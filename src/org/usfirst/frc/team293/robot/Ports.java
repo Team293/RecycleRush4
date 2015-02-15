@@ -27,7 +27,8 @@ public class Ports {
 	elevator4BInput = 6,
 	elevator5BInput = 1,
 
-	/*//LEDs
+	//LEDs
+	yellowIndicator = 0,
 	elevator0BOutput = 0,
 	elevator1BOutput = 0,
 	elevator2BOutput = 0,
@@ -35,7 +36,6 @@ public class Ports {
 	elevator4BOutput = 0,
 	elevator5BOutput = 0,
 	elevator6BOutput = 0,
-	 */
 
 	elevatorA = 3,
 	armA = 6,
@@ -51,8 +51,7 @@ public class Ports {
 	rightDriveEncoder2 = 3,
 	elevatorEncoder1 = 4,
 	elevatorEncoder2 = 5,
-	centerDriveEncoder1=6,
-	centerDriveEncoder2=7,
+	toteSensor = 6,
 	elevatorTopLimit = 8,
 	elevatorBottomLimit = 9,
 	
