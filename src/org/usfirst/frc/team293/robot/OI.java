@@ -13,35 +13,23 @@ import subsystems.PDP;
 
 public class OI {
 	//gamepad or custom Launchpad
-	public boolean gamepad=true;
 	private static final Joystick leftJoystick = new Joystick(Ports.leftJoystick);
 	private static final Joystick rightJoystick = new Joystick(Ports.rightJoystick); 
 	private static final Joystick launchpad = new Joystick(Ports.launchpad);
 
-	private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
-	private static final SpikeButton elevatorUpB = new SpikeButton(launchpad, Ports.elevatorUpB);
-	/*private static final SpikeLEDButton elevator0B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
+	private static final SpikeLEDButton elevator0B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
 	private static final SpikeLEDButton elevator1B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
 	private static final SpikeLEDButton elevator2B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
 	private static final SpikeLEDButton elevator3B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
 	private static final SpikeLEDButton elevator4B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
 	private static final SpikeLEDButton elevator5B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator6B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator7B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	 */	
 
-	//private static final SpikeButton elevatorUpB = new SpikeButton(launchpad, Ports.elevatorUpB);
-	//private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
 	private static final SpikeButton softSwitch = new SpikeButton(launchpad, Ports.lever);
-	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
-	private static final SpikeButton elevator0B = new SpikeButton(launchpad, Ports.elevator0BInput);
-	private static final SpikeButton elevator1B = new SpikeButton(launchpad, Ports.elevator1BInput);
-	private static final SpikeButton elevator2B = new SpikeButton(launchpad, Ports.elevator2BInput);
-	private static final SpikeButton elevator3B = new SpikeButton(launchpad, Ports.elevator3BInput);
-	private static final SpikeButton elevator4B = new SpikeButton(launchpad, Ports.elevator4BInput);
-	private static final SpikeButton elevator5B = new SpikeButton(launchpad, Ports.elevator5BInput);
-	
+	private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
+	private static final SpikeButton elevatorUpB = new SpikeButton(launchpad, Ports.elevatorUpB);
 	private static final SpikeButton rightBinB = new SpikeButton(launchpad, Ports.rightBin);
+
+	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 
 
 
@@ -58,6 +46,18 @@ public class OI {
 		}
 	}
 
+	public static void monitorElevatorB(SpikeLEDButton button, int positionIndex) {
+		if (Elevator.getTargetPosition() == Elevator.positions[positionIndex]) {
+			if (Elevator.onTarget()) {
+				button.setOutput(true);
+			} else {
+				button.flash();
+			}
+		} else {
+			button.setOutput(false);
+		}
+	}
+	
 	public static void controlElevator() {
 		launchpad.setOutput(Ports.yellowIndicator, Elevator.isAligned());
 		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
@@ -98,6 +98,14 @@ public class OI {
 			}
 		}
 		Elevator.periodicPControl();
+		
+		monitorElevatorB(elevator0B, 0);
+		monitorElevatorB(elevator1B, 1);
+		monitorElevatorB(elevator2B, 2);
+		monitorElevatorB(elevator3B, 3);
+		monitorElevatorB(elevator4B, 4);
+		monitorElevatorB(elevator5B, 5);
+		
 	}
 
 	public static void controlPDP() {

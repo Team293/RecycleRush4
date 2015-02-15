@@ -28,14 +28,13 @@ public class Ports {
 	elevator5BInput = 1,
 
 	//LEDs
-	yellowIndicator = 0,
-	elevator0BOutput = 0,
-	elevator1BOutput = 0,
-	elevator2BOutput = 0,
-	elevator3BOutput = 0,
-	elevator4BOutput = 0,
-	elevator5BOutput = 0,
-	elevator6BOutput = 0,
+	yellowIndicator = 2,
+	elevator0BOutput = 11,
+	elevator1BOutput = 10,
+	elevator2BOutput = 9,
+	elevator3BOutput = 8,
+	elevator4BOutput = 7,
+	elevator5BOutput = 6,
 
 	elevatorA = 3,
 	armA = 6,

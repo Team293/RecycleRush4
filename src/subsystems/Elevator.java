@@ -24,13 +24,10 @@ public class Elevator {
 	private static final double CANONTOTE = 20;
 	private static final double TWOTOTE = 28;
 	private static final double CANONTWOTOTE = 32;
-	static double[] positions = new double[] {PICKUP, TRAVEL, ONETOTE, CANONTOTE, TWOTOTE, CANONTWOTOTE};
+	public static double[] positions = new double[] {PICKUP, TRAVEL, ONETOTE, CANONTOTE, TWOTOTE, CANONTWOTOTE};
 	private static double kP = 1.19;
 	private static final double encoderScale = 512; //counts per rotation
 	private static final double circumference = 7.56; //of belt gear
-
-	private static boolean wasBumped = false;
-
 
 	public static void reset() {
 		encoder.reset();
@@ -47,6 +44,10 @@ public class Elevator {
 			encoder.reset();
 		}
 		elevator.set(speed);
+	}
+	
+	public static void setPosition(double position) {
+		targetPosition = position;
 	}
 	
 	public static boolean isAligned() {
@@ -92,6 +93,10 @@ public class Elevator {
 			hardSetPresetPosition(positionInput);
 		}
 	}
+	
+	public static double getTargetPosition() {
+		return targetPosition;
+	}
 
 	public static void updateManualPosition(boolean direction) {
 		//change the target position manually
@@ -113,10 +118,6 @@ public class Elevator {
 			return true;
 		}
 		return false;
-	}
-	
-	public static void setPosition(double position) {
-		targetPosition = position;
 	}
 
 	public static void periodicPControl() {
