@@ -26,8 +26,6 @@ public class SpikeLimit extends DigitalInput{
 	
 	public boolean isBumped() {
 		update();
-		SmartDashboard.putBoolean("current", current);
-		SmartDashboard.putBoolean("previous", previous);
 		if (current && (!previous)) {
 			return true;
 		}

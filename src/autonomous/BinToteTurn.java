@@ -23,12 +23,6 @@ public class BinToteTurn extends Auto{
 	}
 
 	public void run() {
-		liftT = SmartDashboard.getNumber("liftT");
-		captureT = SmartDashboard.getNumber("captureT") + liftT;
-		turnT = SmartDashboard.getNumber("turnT") + captureT;
-		driveT = SmartDashboard.getNumber("driveT") + turnT;
-		turnT2 = SmartDashboard.getNumber("turnT2") + driveT;
-		
 		if (autoTimer.get() < liftT) {
 			Elevator.setPresetPosition(3);
 			Elevator.periodicPControl();

@@ -46,7 +46,6 @@ public class Elevator {
 			speed = SpikeMath.cap(speed, 0, 1);
 			encoder.reset();
 		}
-		SmartDashboard.putBoolean("bottomLimitWasBumped", wasBumped);
 		elevator.set(speed);
 	}
 	
@@ -131,9 +130,6 @@ public class Elevator {
 		if (output < -.5) {
 			output = -.5;
 		}
-		move(output); 
-		SmartDashboard.putBoolean("bottomLimit", bottomLimit.get());
-		SmartDashboard.putBoolean("topLimit", topLimit.get());
-		SmartDashboard.putNumber("elevatorOutput", output);
+		move(output);
 	}
 }

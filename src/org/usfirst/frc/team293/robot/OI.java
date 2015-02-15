@@ -47,8 +47,6 @@ public class OI {
 
 	public static void controlDriveTrain() {
 		DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
-		SmartDashboard.putNumber("leftJoy", -leftJoystick.getY());
-		SmartDashboard.putNumber("rightJoy", -rightJoystick.getY());
 	}
 
 	public static void controlArm() {
@@ -56,7 +54,6 @@ public class OI {
 			Integration.rightTote();
 		} else {
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
-			SmartDashboard.putNumber("potControl", launchpad.getRawAxis(Ports.armA));
 			Arm.periodicControl();
 		}
 	}

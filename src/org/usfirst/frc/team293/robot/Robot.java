@@ -7,8 +7,6 @@ import autonomous.BinTote;
 import autonomous.BinToteTurn;
 import autonomous.BinTurn;
 import autonomous.RobotSet;
-import subsystems.Arm;
-import subsystems.DriveTrain;
 import subsystems.Elevator;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -33,12 +31,6 @@ public class Robot extends IterativeRobot {
 	Auto selectedAuto;
 
 	public void robotInit() {
-		SmartDashboard.putNumber("liftT", 0);
-		SmartDashboard.putNumber("captureT", 0);
-		SmartDashboard.putNumber("turnT", 0);
-		SmartDashboard.putNumber("driveT", 0);
-		SmartDashboard.putNumber("turnT2", 0);
-		
 		autonomousChooser.addObject("bin", new Bin());
 		autonomousChooser.addObject("bin & turn", new BinTurn());
 		autonomousChooser.addObject("bin & tote", new BinTote());

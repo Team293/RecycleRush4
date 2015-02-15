@@ -5,9 +5,7 @@ import org.usfirst.frc.team293.robot.Ports;
 
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -34,13 +32,6 @@ public class DriveTrain {
 		leftValue = Math.signum(leftValue) * leftValue * leftValue;
 		rightValue = Math.signum(rightValue) * rightValue * rightValue;
 		tankDrive(leftValue, rightValue);
-	}
-	
-	public static void view() {
-		SmartDashboard.putNumber("leftEncoderCount", leftEncoder.get());
-		SmartDashboard.putNumber("rightEncoderCount", rightEncoder.get());
-		SmartDashboard.putNumber("leftEncoderRate", leftEncoder.getRate());
-		SmartDashboard.putNumber("rightEncoderRate", rightEncoder.getRate());
 	}
 	
 	public static void skidControl(double leftInput, double rightInput) {

@@ -44,9 +44,7 @@ public class Arm {
 	}
 	
 	public static void periodicControl() {
-		SmartDashboard.putNumber("potValue", pot.get());
 		double error = pot.get() - targetPosition;
-		SmartDashboard.putNumber("armSpeed", kP * error);
 		move(kP * error);
 	}
 
