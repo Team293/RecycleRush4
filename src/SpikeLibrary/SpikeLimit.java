@@ -1,7 +1,6 @@
 package SpikeLibrary;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SpikeLimit extends DigitalInput{
 	
