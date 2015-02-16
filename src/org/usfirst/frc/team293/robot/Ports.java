@@ -21,7 +21,7 @@ public class Ports {
 	elevatorUpB = 5,
 	elevatorDownB = 4,
 	elevator0BInput = 2,
-	elevator1BInput = 14,
+	elevator1BInput = 10,
 	elevator2BInput = 9,
 	elevator3BInput = 8,
 	elevator4BInput = 6,

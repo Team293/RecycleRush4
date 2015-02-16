@@ -66,7 +66,7 @@ public class OI {
 			Elevator.setSoftMode(true);
 		} else {
 			Elevator.setSoftMode(false);
-		}
+		}	
 		if (elevatorUpB.isHeld() || elevatorDownB.isHeld()) {
 			Elevator.setManualMode(true);
 			if (elevatorUpB.isHeld()) {
