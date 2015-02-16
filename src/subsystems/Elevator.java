@@ -114,7 +114,7 @@ public class Elevator {
 	}
 	
 	public static boolean onTarget() {
-		if (Math.abs(targetPosition - getInches()) < 0.2) {
+		if (Math.abs(targetPosition - getInches()) <= 0.2) {
 			return true;
 		}
 		return false;
@@ -128,9 +128,9 @@ public class Elevator {
 		double rawError = targetPosition - currentPosition;
 		double output = rawError * kP;
 		//limiting output to elevator motor speed
-		if (output < -.5) {
-			output = -.5;
-		}
+		//if (output < -.5) {
+			//output = -.5;
+		//}
 		move(output);
 	}
 }

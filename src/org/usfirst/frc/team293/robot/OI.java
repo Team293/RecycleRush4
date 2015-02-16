@@ -42,7 +42,7 @@ public class OI {
 			rightBinB.setOutput(true);
 			Integration.rightTote();
 			 running=Integration.rightTote();
-		} else if (running==false){
+		} else if (running == false){
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
 			Arm.periodicControl();
@@ -52,12 +52,10 @@ public class OI {
 	public static void monitorElevatorB(SpikeLEDButton button, int positionIndex) {
 		if (Elevator.getTargetPosition() == Elevator.positions[positionIndex]) {
 			if (Elevator.onTarget()) {
-				button.setOutput(true);
-			} else {
+				button.setOutput(false);
+				}  else {
 				button.flash();
 			}
-		} else {
-			button.setOutput(false);
 		}
 	}
 	
