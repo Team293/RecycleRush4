@@ -41,7 +41,10 @@ public class Elevator {
 			speed = SpikeMath.cap(speed, -1, 0);
 		} else if (bottomLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, 0, 1);
-			reset();
+			encoder.reset();
+			if (targetPosition < 0) {
+				targetPosition = 0;
+			}
 		}
 		elevator.set(speed);
 	}
