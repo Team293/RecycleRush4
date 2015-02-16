@@ -27,20 +27,23 @@ public class OI {
 	private static final SpikeButton softSwitch = new SpikeButton(launchpad, Ports.lever);
 	private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
 	private static final SpikeButton elevatorUpB = new SpikeButton(launchpad, Ports.elevatorUpB);
-	private static final SpikeButton rightBinB = new SpikeButton(launchpad, Ports.rightBin);
+	private static final SpikeLEDButton rightBinB = new SpikeLEDButton(launchpad,Ports.arm, Ports.rightBin);
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 
-
+	private static boolean running=false;
 
 	public static void controlDriveTrain() {
 		DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
 	}
 
 	public static void controlArm() {
-		if (rightBinB.isHeld()) {
+		if (rightBinB.isBumped()) {
+			rightBinB.setOutput(true);
 			Integration.rightTote();
-		} else {
+			 running=Integration.rightTote();
+		} else if (running==false){
+			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
 			Arm.periodicControl();
 		}

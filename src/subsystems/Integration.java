@@ -2,7 +2,7 @@ package subsystems;
 
 public class Integration {
 	private static int step = 0;
-	public static void rightTote() {
+	public static boolean rightTote() {
 		
 		if (step == 0) {
 			// move arm and elevator to correct height
@@ -22,13 +22,19 @@ public class Integration {
 			Elevator.setPosition(0);
 		} else if (step == 5) {
 			// move arm back to some position
-			Arm.setPosition(0);
+			Arm.setPosition(0);	
+		}
+		else if (step==6){
+			step=0;
+			return false;
 		}
 		Elevator.periodicPControl();
 		Arm.periodicControl();
 		if (Elevator.onTarget() && Arm.onTarget()) {
 			step += 1;
 		}
+		return true;
 	}
+
 
 }

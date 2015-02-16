@@ -114,7 +114,7 @@ public class Elevator {
 	}
 	
 	public static boolean onTarget() {
-		if (Math.abs(targetPosition - getInches()) > 0.2) {
+		if (Math.abs(targetPosition - getInches()) < 0.2) {
 			return true;
 		}
 		return false;
