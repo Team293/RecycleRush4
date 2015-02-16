@@ -18,11 +18,11 @@ public class OI {
 	private static final Joystick launchpad = new Joystick(Ports.launchpad);
 
 	private static final SpikeLEDButton elevator0B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator1B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator2B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator3B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator4B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
-	private static final SpikeLEDButton elevator5B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
+	private static final SpikeLEDButton elevator1B = new SpikeLEDButton(launchpad, Ports.elevator1BInput, Ports.elevator1BOutput);
+	private static final SpikeLEDButton elevator2B = new SpikeLEDButton(launchpad, Ports.elevator2BInput, Ports.elevator2BOutput);
+	private static final SpikeLEDButton elevator3B = new SpikeLEDButton(launchpad, Ports.elevator3BInput, Ports.elevator3BOutput);
+	private static final SpikeLEDButton elevator4B = new SpikeLEDButton(launchpad, Ports.elevator4BInput, Ports.elevator4BOutput);
+	private static final SpikeLEDButton elevator5B = new SpikeLEDButton(launchpad, Ports.elevator5BInput, Ports.elevator5BOutput);
 
 	private static final SpikeButton softSwitch = new SpikeButton(launchpad, Ports.lever);
 	private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
@@ -38,11 +38,10 @@ public class OI {
 	}
 
 	public static void controlArm() {
-		if (rightBinB.isBumped()) {
+		if (rightBinB.isHeld()) {
 			rightBinB.setOutput(true);
 			Integration.rightTote();
-			 running=Integration.rightTote();
-		} else if (running == false){
+		} else {
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
 			Arm.periodicControl();
@@ -52,15 +51,16 @@ public class OI {
 	public static void monitorElevatorB(SpikeLEDButton button, int positionIndex) {
 		if (Elevator.getTargetPosition() == Elevator.positions[positionIndex]) {
 			if (Elevator.onTarget()) {
-				button.setOutput(false);
+				button.setOutput(true);
 				}  else {
 				button.flash();
 			}
+		} else {
+			button.setOutput(false);
 		}
 	}
 	
 	public static void controlElevator() {
-		
 		launchpad.setOutput(Ports.yellowIndicator, Elevator.isAligned());
 		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
 		if (softSwitch.isHeld()) {

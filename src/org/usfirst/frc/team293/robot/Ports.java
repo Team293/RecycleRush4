@@ -17,7 +17,7 @@ public class Ports {
 
 	//launchpad
 	rightBin = 3,
-	lever = 15,
+	lever = 11,
 	elevatorUpB = 5,
 	elevatorDownB = 4,
 	elevator0BInput = 2,
@@ -39,7 +39,6 @@ public class Ports {
 	elevatorA = 3,
 	armA = 6,
 
-	armManualSwitch = 0,
 	arm0B = 8,
 	arm1B = 9,
 	

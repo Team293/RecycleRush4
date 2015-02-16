@@ -18,7 +18,7 @@ public class Elevator {
 	private static boolean softMode = false;
 	private static double targetPosition = 0;
 	private static double finalTargetPosition = 0;
-	private static final double PICKUP = 0.75;
+	private static final double PICKUP = 0.5;
 	private static final double TRAVEL = 4.75;
 	private static final double ONETOTE = 15.75;
 	private static final double CANONTOTE = 20;
@@ -41,7 +41,7 @@ public class Elevator {
 			speed = SpikeMath.cap(speed, -1, 0);
 		} else if (bottomLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, 0, 1);
-			encoder.reset();
+			reset();
 		}
 		elevator.set(speed);
 	}
@@ -73,17 +73,12 @@ public class Elevator {
 
 	public static void hardSetPresetPosition(int positionInput) {
 		//set the target position to a preset position
-		targetPosition = positions[positionInput];
+		finalTargetPosition = positions[positionInput];
+		targetPosition = finalTargetPosition;
 	}
 
 	public static void softSetPresetPosition(int positionInput) {
 		finalTargetPosition = positions[positionInput];
-		double error = finalTargetPosition - targetPosition;
-		if (error >= 0.125) {
-			updateManualPosition(true);
-		} else if (error <= -0.125) {
-			updateManualPosition(false);
-		}
 	}
 
 	public static void setPresetPosition(int positionInput) {
@@ -123,6 +118,12 @@ public class Elevator {
 	public static void periodicPControl() {
 		//go to the target position
 		double currentPosition = getInches();
+		double error = finalTargetPosition - targetPosition;
+		if (error >= 0.125) {
+			updateManualPosition(true);
+		} else if (error <= -0.125) {
+			updateManualPosition(false);
+		}
 		SmartDashboard.putNumber("currentPosition", currentPosition);
 		SmartDashboard.putNumber("targetPosition", targetPosition);
 		double rawError = targetPosition - currentPosition;

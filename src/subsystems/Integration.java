@@ -24,10 +24,7 @@ public class Integration {
 			// move arm back to some position
 			Arm.setPosition(0);	
 		}
-		else if (step==6){
-			step=0;
-			return false;
-		}
+		
 		Elevator.periodicPControl();
 		Arm.periodicControl();
 		if (Elevator.onTarget() && Arm.onTarget()) {
