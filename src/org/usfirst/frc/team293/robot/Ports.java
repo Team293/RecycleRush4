@@ -49,7 +49,8 @@ public class Ports {
 	rightDriveEncoder2 = 3,
 	elevatorEncoder1 = 4,
 	elevatorEncoder2 = 5,
-	toteSensor = 6,
+	lToteLimit = 6,
+	rToteLimit = 7,
 	elevatorTopLimit = 8,
 	elevatorBottomLimit = 9,
 	

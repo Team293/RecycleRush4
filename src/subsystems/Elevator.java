@@ -13,7 +13,8 @@ public class Elevator {
 	private static final Encoder encoder = new Encoder(Ports.elevatorEncoder1, Ports.elevatorEncoder2);
 	private static final SpikeLimit topLimit = new SpikeLimit(Ports.elevatorTopLimit);
 	private static final SpikeLimit bottomLimit = new SpikeLimit(Ports.elevatorBottomLimit);
-	private static final SpikeLimit toteLimit = new SpikeLimit(Ports.toteSensor);
+	private static final SpikeLimit lToteLimit = new SpikeLimit(Ports.lToteLimit);
+	private static final SpikeLimit rToteLimit = new SpikeLimit(Ports.rToteLimit);
 	private static boolean manualMode = true;
 	private static boolean softMode = false;
 	private static double targetPosition = 0;
@@ -37,6 +38,7 @@ public class Elevator {
 
 	public static void move(double speed) {
 		//stops from moving through limits
+		SmartDashboard.putBoolean("topLimit", topLimit.isHeld());
 		if (topLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, -1, 0);
 		} else if (bottomLimit.isHeld()) {
@@ -54,7 +56,7 @@ public class Elevator {
 	}
 	
 	public static boolean isAligned() {
-		if (toteLimit.isHeld()) {
+		if (lToteLimit.isHeld() && rToteLimit.isHeld()) {
 			return true;
 		}
 		return false;
