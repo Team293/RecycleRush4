@@ -25,9 +25,9 @@ public class OI {
 	private static final SpikeLEDButton elevator5B = new SpikeLEDButton(launchpad, Ports.elevator5BInput, Ports.elevator5BOutput);
 
 	private static final SpikeButton softSwitch = new SpikeButton(launchpad, Ports.lever);
-	private static final SpikeButton elevatorDownB = new SpikeButton(launchpad, Ports.elevatorDownB);
-	private static final SpikeButton elevatorUpB = new SpikeButton(launchpad, Ports.elevatorUpB);
-	private static final SpikeLEDButton rightBinB = new SpikeLEDButton(launchpad,Ports.arm, Ports.rightBin);
+	private static final SpikeLEDButton elevatorDownB = new SpikeLEDButton(launchpad, Ports.elevatorDownB, Ports.elevatorDownBOutput);
+	private static final SpikeLEDButton elevatorUpB = new SpikeLEDButton(launchpad, Ports.elevatorUpB, Ports.elevatorUpBOutput);
+	private static final SpikeLEDButton rightBinB = new SpikeLEDButton(launchpad, Ports.rightBin, Ports.rightBinBOutput);
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 
@@ -52,16 +52,20 @@ public class OI {
 		if (Elevator.getTargetPosition() == Elevator.positions[positionIndex]) {
 			if (Elevator.onTarget()) {
 				button.setOutput(true);
-				}  else {
+			}  else {
 				button.flash();
 			}
+			SmartDashboard.putBoolean(Integer.toString(positionIndex), true);
 		} else {
 			button.setOutput(false);
+			SmartDashboard.putBoolean(Integer.toString(positionIndex), false);
 		}
 	}
-	
+
 	public static void controlElevator() {
 		launchpad.setOutput(Ports.yellowIndicator, Elevator.isAligned());
+		elevatorUpB.setOutput(true);
+		elevatorDownB.setOutput(elevatorDownB.isHeld());
 		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
 		if (softSwitch.isHeld()) {
 			Elevator.setSoftMode(true);
@@ -100,14 +104,14 @@ public class OI {
 			}
 		}
 		Elevator.periodicPControl();
-		
+
 		monitorElevatorB(elevator0B, 0);
 		monitorElevatorB(elevator1B, 1);
 		monitorElevatorB(elevator2B, 2);
 		monitorElevatorB(elevator3B, 3);
 		monitorElevatorB(elevator4B, 4);
 		monitorElevatorB(elevator5B, 5);
-		
+
 	}
 
 	public static void controlPDP() {

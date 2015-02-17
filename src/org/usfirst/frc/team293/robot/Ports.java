@@ -29,6 +29,9 @@ public class Ports {
 
 	//LEDs
 	yellowIndicator = 2,
+	rightBinBOutput = 5,
+	elevatorUpBOutput = 3,
+	elevatorDownBOutput = 4,
 	elevator0BOutput = 11,
 	elevator1BOutput = 10,
 	elevator2BOutput = 9,

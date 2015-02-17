@@ -24,7 +24,7 @@ public class Elevator {
 	private static final double ONETOTE = 15.75;
 	private static final double CANONTOTE = 20;
 	private static final double TWOTOTE = 28;
-	private static final double CANONTWOTOTE = 32;
+	private static final double CANONTWOTOTE = 31;
 	public static double[] positions = new double[] {PICKUP, TRAVEL, ONETOTE, CANONTOTE, TWOTOTE, CANONTWOTOTE};
 	private static double kP = 1.19;
 	private static final double encoderScale = 512; //counts per rotation
@@ -41,11 +41,14 @@ public class Elevator {
 		SmartDashboard.putBoolean("topLimit", topLimit.isHeld());
 		if (topLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, -1, 0);
+			finalTargetPosition = 32;
+			targetPosition = 32;
 		} else if (bottomLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, 0, 1);
 			encoder.reset();
 			if (targetPosition < 0) {
-				targetPosition = 0;
+				finalTargetPosition = 0;
+				targetPosition = finalTargetPosition;
 			}
 		}
 		elevator.set(speed);
@@ -95,16 +98,23 @@ public class Elevator {
 	}
 	
 	public static double getTargetPosition() {
-		return targetPosition;
+		return finalTargetPosition;
 	}
 
 	public static void updateManualPosition(boolean direction) {
 		//change the target position manually
+		finalTargetPosition += (direction ? 0.25:-0.2);
+		targetPosition = finalTargetPosition;
+	}
+	
+	public static void updateSoftPosition(boolean direction) {
 		targetPosition += (direction ? 0.25:-0.2);
 	}
 
 	public static void toggleOneTote() {
-		targetPosition = ((targetPosition == PICKUP) ? ONETOTE:PICKUP);
+		double error = Math.abs(targetPosition - PICKUP);
+		setPresetPosition((error < 0.25) ? 2:0);
+		
 	}
 
 	public static double getInches() {
@@ -125,18 +135,14 @@ public class Elevator {
 		double currentPosition = getInches();
 		double error = finalTargetPosition - targetPosition;
 		if (error >= 0.125) {
-			updateManualPosition(true);
+			updateSoftPosition(true);
 		} else if (error <= -0.125) {
-			updateManualPosition(false);
+			updateSoftPosition(false);
 		}
 		SmartDashboard.putNumber("currentPosition", currentPosition);
 		SmartDashboard.putNumber("targetPosition", targetPosition);
 		double rawError = targetPosition - currentPosition;
 		double output = rawError * kP;
-		//limiting output to elevator motor speed
-		//if (output < -.5) {
-			//output = -.5;
-		//}
 		move(output);
 	}
 }
