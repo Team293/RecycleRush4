@@ -50,7 +50,7 @@ public class SensorDriveStraight {
 			state=5;
 		}
 	}
-	
+	Elevator.periodicPControl();
 	
 
 	
