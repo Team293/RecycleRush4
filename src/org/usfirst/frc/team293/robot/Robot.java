@@ -2,6 +2,7 @@
 package org.usfirst.frc.team293.robot;
 
 import autonomous.*;
+
 import subsystems.DriveTrain;
 import subsystems.Elevator;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,24 +22,27 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 
-	SendableChooser autonomousChooser = new SendableChooser();
+	//SendableChooser autonomousChooser = new SendableChooser();
 	String[] autonomiNames;
 	Auto[] autonomi;
 	Auto selectedAuto;
 
 	public void robotInit() {
-		autonomousChooser.addObject("bin & turn", new BinTurn());
+		/*autonomousChooser.addObject("bin & turn", new BinTurn());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 		autonomousChooser.addObject("robot set", new RobotSet());
 
-		SmartDashboard.putData("Which Autonomous?", autonomousChooser);
+		SmartDashboard.putData("Which Autonomous?", autonomousChooser);*/
+		DriveTrain.gyroInit();
+		SensorDriveStraight.init();
 	}
 
 	public void autonomousInit() {
-		selectedAuto = (Auto) autonomousChooser.getSelected();
-		Elevator.reset();
-		//SensorDriveStraight.init();
-		selectedAuto.init();
+		//selectedAuto = (Auto) autonomousChooser.getSelected();
+		//Elevator.reset();
+		
+		//selectedAuto.init();
+		
 	}
 
 	/**
@@ -47,7 +51,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 			//SmartDashboard.putNumber("time", Auto.autoTimer.get());
 			//selectedAuto.run();
-		//SensorDriveStraight.blah();
+		SensorDriveStraight.blah();
 	}
 
 	/**

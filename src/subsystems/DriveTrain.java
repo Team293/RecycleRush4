@@ -24,21 +24,9 @@ public class DriveTrain {
     
     private static final RobotDrive drive = new RobotDrive(leftMotor, rightMotor);
 
-    //Underneath is all stuff for Straight drive
-    private static Gyro gyro;
-	private static PIDRobotDrive pidRobotDrive;	// this wraps RobotDrive
-	private static PIDGyro pidGyro;	
-	static PIDController autoDrivePID;
-	static double direction=0;   
-	static int status=1;
-	static double leftencoder;
-	static double rightencoder;
-	static double averageencoder;
-	static int count;
-    public static void stop() {
-    	drive.tankDrive(0,0);
-    }
-	public static void tankDrive(double leftSpeed, double rightSpeed) {
+    
+    
+    public static void tankDrive(double leftSpeed, double rightSpeed) {
 		drive.tankDrive(leftSpeed, rightSpeed);
 	}
 	
@@ -55,6 +43,21 @@ public class DriveTrain {
 	public static void arcadeDrive(double move, double rotate) {
 		drive.arcadeDrive(move, rotate);
 	}
+    //Underneath is all stuff for Straight drive
+    private static Gyro gyro;
+	private static PIDRobotDrive pidRobotDrive;	// this wraps RobotDrive
+	private static PIDGyro pidGyro;	
+	static PIDController autoDrivePID;
+	static double direction=0;   
+	static int status=1;
+	static double leftencoder;
+	static double rightencoder;
+	static double averageencoder;
+	static int count;
+    public static void stop() {
+    	drive.tankDrive(0,0);
+    }
+	
 
 	public static double convertToDistance(double count) {
 		double rotations  = count/256;
@@ -77,7 +80,7 @@ public class DriveTrain {
 	
 	private static class PIDRobotDrive implements PIDOutput {
 		public void pidWrite(double output) {
-			drive.drive(-0.2, output);	// use pid output to steer
+			drive.drive(0.4, output);	// use pid output to steer
 		}
 	}
 
@@ -100,7 +103,7 @@ public class DriveTrain {
 	}
 
 	public static void gyroInit() {
-		gyro = new Gyro(0);             // Gyro on Analog Channel 1
+		gyro = new Gyro(Ports.gyro);             // Gyro on Analog Channel 1
 		gyro.setSensitivity(0.0125); 	// ADW22307:  depends on gyro model
 
         drive.setExpiration(0.1);		// set timeout to 100ms

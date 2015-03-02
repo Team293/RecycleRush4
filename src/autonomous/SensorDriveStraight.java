@@ -26,7 +26,7 @@ public class SensorDriveStraight {
 		state=1;
 	}
 	
-	if(state==1){  //stop and pickup can and stuff only calls once
+	if(state==1&&autoTimer.get()>.5){  //stop and pickup can and stuff only calls once
 	DriveTrain.disable();
 	Elevator.setPresetPosition(5);   
 	state=2;
