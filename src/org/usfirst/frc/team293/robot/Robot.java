@@ -7,6 +7,8 @@ import autonomous.BinTote;
 import autonomous.BinToteTurn;
 import autonomous.BinTurn;
 import autonomous.RobotSet;
+import autonomous.SensorDriveStraight;
+import subsystems.DriveTrain;
 import subsystems.Elevator;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -43,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		selectedAuto = (Auto) autonomousChooser.getSelected();
 		Elevator.reset();
-		
+		//SensorDriveStraight.init();
 		selectedAuto.init();
 	}
 
@@ -51,8 +53,9 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-			SmartDashboard.putNumber("time", Auto.autoTimer.get());
-			selectedAuto.run();
+			//SmartDashboard.putNumber("time", Auto.autoTimer.get());
+			//selectedAuto.run();
+		//SensorDriveStraight.blah();
 	}
 
 	/**
@@ -67,7 +70,8 @@ public class Robot extends IterativeRobot {
 		OI.controlElevator();
 		OI.controlArm();
 		OI.controlPDP();
-		
+		DriveTrain.printEncoders();
+		DriveTrain.printScaledEncoder();
 	}
 
 	/**
