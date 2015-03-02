@@ -8,7 +8,7 @@ public class BinTurn extends Auto{
 	private static double liftT = 1.23;
 	private static double turnT = liftT + 0.9;
 	private static double driveT = turnT + 1.8;
-	private static double turnT2 = driveT + 1.4;
+	private static double turn2T = driveT + 1.4;
 	
 	public BinTurn() {
 		super();
@@ -31,8 +31,8 @@ public class BinTurn extends Auto{
 			DriveTrain.tankDrive(1, 1);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
-		} else if (autoTimer.get() < turnT2) {
-			DriveTrain.tankDrive(0.7, -0.7);
+		} else if (autoTimer.get() < turn2T) {
+			DriveTrain.tankDrive(-0.7, 0.7);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "turning2");
 		} else {

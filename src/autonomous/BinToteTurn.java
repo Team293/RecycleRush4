@@ -40,7 +40,7 @@ public class BinToteTurn extends Auto{
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
 		} else if (autoTimer.get() < turn2T) {
-			DriveTrain.tankDrive(0.7, -0.7);
+			DriveTrain.tankDrive(-0.7, 0.7);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "turning2");
 		} else {

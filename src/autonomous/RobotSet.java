@@ -6,6 +6,7 @@ import subsystems.*;
 public class RobotSet extends Auto {
 	
 	private static double driveT = driveTLength;
+	private static double turn2T = driveT + turn2TLength;
 	
 	public RobotSet() {
 		super();
@@ -20,6 +21,10 @@ public class RobotSet extends Auto {
 			DriveTrain.tankDrive(1, 1);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
+		} else if (autoTimer.get() < turn2T) {
+			DriveTrain.tankDrive(-0.7, 0.7);
+			Elevator.periodicPControl();
+			SmartDashboard.putString("mode", "turning2");
 		}
 	}
 }
