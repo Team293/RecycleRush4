@@ -1,8 +1,12 @@
 package autonomous;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import subsystems.*;
 
 public class RobotSet extends Auto {
+	
+	private static double driveT = driveTLength;
+	
 	public RobotSet() {
 		super();
 	}
@@ -12,9 +16,10 @@ public class RobotSet extends Auto {
 	}
 	
 	public void run() {
-
-/*		if (autoTimer.get() < driveToAutozoneTime) {
-			DriveTrain.pidEnable(true);
-		}*/
+		if (autoTimer.get() < driveT) {
+			DriveTrain.tankDrive(1, 1);
+			Elevator.periodicPControl();
+			SmartDashboard.putString("mode", "driving");
+		}
 	}
 }

@@ -8,11 +8,11 @@ public class BinToteTurn extends Auto{
 	/**
 	 * Puts yellow bin without stacking the three bins in a stack.
 	 */
-	private static double liftT = 1.23;
-	private static double captureT = liftT + 0.4;
-	private static double turnT = captureT + 0.9;
-	private static double driveT = turnT + 1.8;
-	private static double turnT2 = driveT + 1.4;
+	private static double liftT = liftTLength;
+	private static double captureT = liftT + captureTLength;
+	private static double turnT = captureT + turnTLength;
+	private static double driveT = turnT + driveTLength;
+	private static double turn2T = driveT + turn2TLength;
 	
 	public BinToteTurn() {
 		super();
@@ -39,7 +39,7 @@ public class BinToteTurn extends Auto{
 			DriveTrain.tankDrive(1, 1);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
-		} else if (autoTimer.get() < turnT2) {
+		} else if (autoTimer.get() < turn2T) {
 			DriveTrain.tankDrive(0.7, -0.7);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "turning2");
