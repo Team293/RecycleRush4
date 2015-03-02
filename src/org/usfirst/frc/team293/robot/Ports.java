@@ -28,10 +28,10 @@ public class Ports {
 	elevator5BInput = 1,
 
 	//LEDs
-	yellowIndicator = 2,
-	rightBinBOutput = 5,
-	elevatorUpBOutput = 3,
-	elevatorDownBOutput = 4,
+	indicatorStrip = 2,
+	rightBinBOutput = 4,
+	elevatorUpBOutput = 5,
+	elevatorDownBOutput = 3,
 	elevator0BOutput = 11,
 	elevator1BOutput = 10,
 	elevator2BOutput = 9,
