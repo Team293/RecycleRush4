@@ -16,10 +16,10 @@ public class Ports {
 	trigger = 1,
 
 	//launchpad
-	rightBin = 3,
+	rightBin = 4,
 	lever = 11,
-	elevatorUpB = 5,
-	elevatorDownB = 4,
+	elevatorUpB = 3,
+	elevatorDownB = 5,
 	elevator0BInput = 2,
 	elevator1BInput = 10,
 	elevator2BInput = 9,
