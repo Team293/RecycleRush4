@@ -34,11 +34,13 @@ public class Elevator {
 		encoder.reset();
 		encoder.setDistancePerPulse(0.01477);
 		targetPosition = 0;
+		finalTargetPosition = 0;
 	}
 
 	public static void move(double speed) {
 		//stops from moving through limits
 		SmartDashboard.putBoolean("topLimit", topLimit.isHeld());
+		SmartDashboard.putBoolean("bottomLimit", bottomLimit.isHeld());
 		if (topLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, -1, 0);
 			finalTargetPosition = 32;
