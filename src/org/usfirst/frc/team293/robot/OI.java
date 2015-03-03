@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import subsystems.Arm;
 import subsystems.DriveTrain;
 import subsystems.Elevator;
-import subsystems.Integration;
 import subsystems.PDP;
+import subsystems.RightTote;
 
 
 public class OI {

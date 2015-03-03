@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putData("Which Autonomous?", autonomousChooser);*/
 		DriveTrain.gyroInit();
-		SensorDriveStraight.init();
+		SensorTurnRight.init();
 	}
 
 	public void autonomousInit() {
@@ -51,7 +51,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 			//SmartDashboard.putNumber("time", Auto.autoTimer.get());
 			//selectedAuto.run();
-		SensorDriveStraight.blah();
+		SensorTurnRight.blah();
 	}
 
 	/**

@@ -122,45 +122,46 @@ public class DriveTrain {
 		autoDrivePID.setTolerance(1.0);			// 1%
 		autoDrivePID.setSetpoint(0.0);
 	}
-	public static void enable(){
+	public static void enable(){//enable and set the speed going forward
 		if (status==1){
 			drivedirection=.4;
 		autoDrivePID.enable(); 
 		status=0;
 		}
-		public static void backwardsenable(){
+	}
+		public static void backwardsenable(){//enable and set the speed going backwards
 			if (status==1){
-				 drivedirection=-.4;
-		autoDrivePID.enable();		
+				drivedirection=-.4;
+				autoDrivePID.enable();		
 		status=0;
 			}
 
 			}
 			
-	}
-	public static void disable(){
+	
+	public static void disable(){//turn off robot drive
 		if (status==0){
 		autoDrivePID.disable();
 		status=1;
 		}	
 	}
-	public static int turnleft(){
+	public static int turnleft(){//add value every loop to the setangle
 		direction=direction+.005;	
 		count=count+1;
 		return count;
 	}
-	public static int turnright(){
+	public static int turnright(){//subtract value every loop to the setangle
 		direction=direction-.005;	
 		count=count+1;
 		return count;
 	}
-	public static double getAvgDistance(){
+	public static double getAvgDistance(){//get avg distance traveled
 		leftencoder =leftEncoder.get()/256*6*Math.PI;  //spread out wheel diameter 6 to make sense
 		rightencoder=-rightEncoder.get()/256*6*Math.PI;
 		averageencoder=leftencoder+rightencoder/2;
 		return averageencoder;	
 	}
-	public static void resetEncoders(){
+	public static void resetEncoders(){//reset distance traveled
 		leftEncoder.reset();
 		rightEncoder.reset();
 	}
