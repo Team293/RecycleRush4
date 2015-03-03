@@ -40,7 +40,7 @@ public class OI {
 	public static void controlArm() {
 		if (rightBinB.isHeld()) {
 			rightBinB.setOutput(true);
-			Integration.rightTote();
+			RightTote.rightTote();
 		} else {
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));

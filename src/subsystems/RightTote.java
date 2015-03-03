@@ -1,6 +1,6 @@
 package subsystems;
 
-public class Integration {
+public class RightTote {
 	private static int step = 0;
 	public static boolean rightTote() {
 		

@@ -54,6 +54,7 @@ public class DriveTrain {
 	static double rightencoder;
 	static double averageencoder;
 	static int count;
+	static double drivedirection;
     public static void stop() {
     	drive.tankDrive(0,0);
     }
@@ -80,7 +81,7 @@ public class DriveTrain {
 	
 	private static class PIDRobotDrive implements PIDOutput {
 		public void pidWrite(double output) {
-			drive.drive(0.4, output);	// use pid output to steer
+			drive.drive(drivedirection, output);	// use pid output to steer
 		}
 	}
 
@@ -123,9 +124,18 @@ public class DriveTrain {
 	}
 	public static void enable(){
 		if (status==1){
-		autoDrivePID.enable();
+			drivedirection=.4;
+		autoDrivePID.enable(); 
 		status=0;
 		}
+		public static void backwardsenable(){
+			if (status==1){
+				 drivedirection=-.4;
+		autoDrivePID.enable();		
+		status=0;
+			}
+
+			}
 			
 	}
 	public static void disable(){
@@ -136,6 +146,11 @@ public class DriveTrain {
 	}
 	public static int turnleft(){
 		direction=direction+.005;	
+		count=count+1;
+		return count;
+	}
+	public static int turnright(){
+		direction=direction-.005;	
 		count=count+1;
 		return count;
 	}
