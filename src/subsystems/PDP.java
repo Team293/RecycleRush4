@@ -14,6 +14,7 @@ public class PDP {
 		//SmartDashboard.putNumber("current3", pdp.getCurrent(3));
 		//SmartDashboard.putNumber("current4", pdp.getCurrent(4));
 		//SmartDashboard.putNumber("current5", pdp.getCurrent(5));*/
+		SmartDashboard.putNumber("totalcurrent", pdp.getTotalCurrent());
 		
 	}
 

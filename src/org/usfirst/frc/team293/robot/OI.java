@@ -35,6 +35,8 @@ public class OI {
 
 	public static void controlDriveTrain() {
 		DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
+		SmartDashboard.putNumber("leftjoystick", leftJoystick.getY());
+		SmartDashboard.putNumber("leftjoystick", leftJoystick.getX());
 	}
 
 	public static void controlArm() {
