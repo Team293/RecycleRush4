@@ -64,7 +64,7 @@ public class OI {
 
 	public static void controlElevator() {
 		launchpad.setOutput(Ports.indicatorStrip, Elevator.isAligned());
-		elevatorUpB.setOutput(true);
+		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
 		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
 		if (softSwitch.isHeld()) {
