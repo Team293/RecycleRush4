@@ -22,26 +22,26 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 
-	//SendableChooser autonomousChooser = new SendableChooser();
+	SendableChooser autonomousChooser = new SendableChooser();
 	String[] autonomiNames;
 	Auto[] autonomi;
 	Auto selectedAuto;
 
 	public void robotInit() {
-		/*autonomousChooser.addObject("bin & turn", new BinTurn());
+		autonomousChooser.addObject("bin & turn", new BinTurn());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 		autonomousChooser.addObject("robot set", new RobotSet());
 
-		SmartDashboard.putData("Which Autonomous?", autonomousChooser);*/
-		DriveTrain.gyroInit();
-		SensorTurnRight.init();
+		SmartDashboard.putData("Which Autonomous?", autonomousChooser);
+		//DriveTrain.gyroInit();
+		//SensorTurnRight.init();
 	}
 
 	public void autonomousInit() {
-		//selectedAuto = (Auto) autonomousChooser.getSelected();
-		//Elevator.reset();
+		selectedAuto = (Auto) autonomousChooser.getSelected();
+		Elevator.reset();
 		
-		//selectedAuto.init();
+		selectedAuto.init();
 		
 	}
 
@@ -49,9 +49,9 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-			//SmartDashboard.putNumber("time", Auto.autoTimer.get());
-			//selectedAuto.run();
-		SensorTurnRight.blah();
+		SmartDashboard.putNumber("time", Auto.autoTimer.get());
+		selectedAuto.run();
+		//SensorTurnRight.blah();
 	}
 
 	/**
@@ -66,8 +66,8 @@ public class Robot extends IterativeRobot {
 		OI.controlElevator();
 		OI.controlArm();
 		OI.controlPDP();
-		DriveTrain.printEncoders();
-		DriveTrain.printScaledEncoder();
+		/*DriveTrain.printEncoders();
+		DriveTrain.printScaledEncoder();*/
 	}
 
 	/**
