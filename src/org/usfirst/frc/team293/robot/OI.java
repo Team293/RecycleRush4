@@ -31,8 +31,6 @@ public class OI {
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 
-	private static boolean running=false;
-
 	public static void controlDriveTrain() {
 		DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
 		SmartDashboard.putNumber("leftjoystick", leftJoystick.getY());
