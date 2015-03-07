@@ -27,6 +27,7 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		autonomousChooser.addObject("nothing", new Nothing());
+		autonomousChooser.addObject("pickup can", new CanPickup());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 
 		SmartDashboard.putData("Which Autonomous?", autonomousChooser);
