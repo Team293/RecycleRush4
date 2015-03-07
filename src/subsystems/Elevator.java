@@ -147,6 +147,7 @@ public class Elevator {
 		}
 		SmartDashboard.putNumber("currentPosition", currentPosition);
 		SmartDashboard.putNumber("targetPosition", targetPosition);
+		SmartDashboard.putNumber("finalTargetPosition", finalTargetPosition);
 		double rawError = targetPosition - currentPosition;
 		double output = rawError * kP;
 		move(output);
