@@ -30,6 +30,10 @@ public class Elevator {
 	private static final double encoderScale = 512; //counts per rotation
 	private static final double circumference = 7.56; //of belt gear
 
+	
+	public static boolean isDown() {
+		return bottomLimit.isHeld();
+	}
 	public static void reset() {
 		encoder.reset();
 		encoder.setDistancePerPulse(0.01477);

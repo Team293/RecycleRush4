@@ -23,7 +23,10 @@ public class BinToteTurn extends Auto{
 	}
 
 	public void run() {
-		if (autoTimer.get() < liftT) {
+		if (!Elevator.isDown()) {
+			Elevator.updateManualPosition(false);
+			autoTimer.reset();
+		} else if (autoTimer.get() < liftT) {
 			Elevator.setPresetPosition(3);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "lifting");

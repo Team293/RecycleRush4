@@ -23,11 +23,10 @@ public class Robot extends IterativeRobot {
 	 */
 
 	SendableChooser autonomousChooser = new SendableChooser();
-	String[] autonomiNames;
-	Auto[] autonomi;
 	Auto selectedAuto;
 
 	public void robotInit() {
+		autonomousChooser.addObject("nothing", new Nothing());
 		autonomousChooser.addObject("bin & turn", new BinTurn());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 		autonomousChooser.addObject("robot set", new RobotSet());
