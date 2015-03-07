@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 		autonomousChooser.addObject("nothing", new Nothing());
 		autonomousChooser.addObject("pickup can", new CanPickup());
 		autonomousChooser.addObject("move forward", new RobotSet());
+		autonomousChooser.addObject("bin", new Bin());
 		autonomousChooser.addObject("bin & tote", new BinTote());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 

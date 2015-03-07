@@ -11,10 +11,6 @@ public class RobotSet extends Auto{
 		super();
 	}
 
-	public void init() {
-		super.init();
-	}
-
 	public void run() {
 		if (Elevator.isDown()) {
 			zeroed = true;
