@@ -7,8 +7,8 @@ public class Auto {
 	public static double initTLength = 0.15;
 	public static double liftTLength = 1.23;
 	public static double captureTLength = 0.4;
-	public static double turnTLength = 0.9;
-	public static double driveTLength = 1.8;
+	public static double turnTLength = 2.5;
+	public static double driveTLength = 2.3;
 	public static double turn2TLength = 1.4;
 
 	

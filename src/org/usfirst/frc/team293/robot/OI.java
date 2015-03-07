@@ -8,7 +8,6 @@ import subsystems.Arm;
 import subsystems.DriveTrain;
 import subsystems.Elevator;
 import subsystems.PDP;
-import subsystems.RightTote;
 
 
 public class OI {
@@ -40,7 +39,7 @@ public class OI {
 	public static void controlArm() {
 		if (rightBinB.isHeld()) {
 			rightBinB.setOutput(true);
-			RightTote.rightTote();
+			Arm.setPosition(-0.195);
 		} else {
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
@@ -86,7 +85,7 @@ public class OI {
 			} else if (elevator0B.isBumped()) {
 				Elevator.setPresetPosition(0);
 				Elevator.setManualMode(false);
-			} else if (elevator1B.isBumped()) {
+			} else if (elevator1B.isBumped() || rightBinB.isBumped()) {
 				Elevator.setPresetPosition(1);
 				Elevator.setManualMode(false);
 			} else if (elevator2B.isBumped()) {
