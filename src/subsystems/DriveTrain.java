@@ -24,8 +24,6 @@ public class DriveTrain {
     
     private static final RobotDrive drive = new RobotDrive(leftMotor, rightMotor);
 
-    
-    
     public static void tankDrive(double leftSpeed, double rightSpeed) {
 		drive.tankDrive(leftSpeed, rightSpeed);
 	}

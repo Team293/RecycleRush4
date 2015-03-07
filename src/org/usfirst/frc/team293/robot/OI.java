@@ -32,6 +32,15 @@ public class OI {
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
 	private static final SpikeButton disableArmB = new SpikeButton(leftJoystick, Ports.disableArm);
 
+
+	public static void win(boolean isStarted) {
+    	if (isStarted) {
+    		//win
+    	} else {
+    		//win anyways
+    	}
+    }
+	
 	public static void controlDriveTrain() {
 		if (slowDriveB.isHeld()) {
 			DriveTrain.slowDrive(-leftJoystick.getY(), -rightJoystick.getY());
