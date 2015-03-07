@@ -71,8 +71,8 @@ public class DriveTrain {
 		return convertToDistance((leftEncoder.get() + rightEncoder.get())/2);
 	}
 	public static void printEncoders(){
-	SmartDashboard.putNumber("rightEncoder", -rightEncoder.get());
-	SmartDashboard.putNumber("leftEncoder", leftEncoder.get());
+		SmartDashboard.putNumber("rightEncoder", -rightEncoder.get());
+		SmartDashboard.putNumber("leftEncoder", leftEncoder.get());
 	}
 	public static void printScaledEncoder(){
 		SmartDashboard.putNumber("rightscaledEncoder", -rightEncoder.get()/256*3.14*diameter);

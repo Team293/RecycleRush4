@@ -12,7 +12,7 @@ public class Arm {
 	private static final double min = -0.36;
 	private static final double max = 0.73;
 	private static final AnalogPotentiometer pot = new AnalogPotentiometer(Ports.armPot, 2, -1);
-	private static double targetPosition = 0;
+	private static double targetPosition = 0.664;
 	private static final double kP = 2;
 	
 	public static void move(double speed) {

@@ -38,8 +38,6 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		selectedAuto = (Auto) autonomousChooser.getSelected();
-		Elevator.reset();
-		
 		selectedAuto.init();
 		
 	}
@@ -57,7 +55,6 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopInit() {
-		Elevator.reset();
 	}
 	
 	public void teleopPeriodic() {
