@@ -1,6 +1,7 @@
 package autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Auto {
 	public static Timer autoTimer = new Timer();
@@ -20,7 +21,9 @@ public class Auto {
 	
 	public void init() {
 		autoTimer.start();
-		
+		if (SmartDashboard.getBoolean("Step Auto")) {
+			turnTLength = 2.4;
+		}
 	}
 	
 	public void run() {

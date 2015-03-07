@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
 
 		SmartDashboard.putData("Which Autonomous?", autonomousChooser);
+		SmartDashboard.putBoolean("Step Auto", false);
 	}
 
 	public void autonomousInit() {
