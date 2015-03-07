@@ -62,10 +62,8 @@ public class OI {
 			}  else {
 				button.flash();
 			}
-			SmartDashboard.putBoolean(Integer.toString(positionIndex), true);
 		} else {
 			button.setOutput(false);
-			SmartDashboard.putBoolean(Integer.toString(positionIndex), false);
 		}
 	}
 

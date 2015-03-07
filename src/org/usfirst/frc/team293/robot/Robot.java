@@ -59,7 +59,6 @@ public class Robot extends IterativeRobot {
 		OI.controlDriveTrain();
 		OI.controlElevator();
 		OI.controlArm();
-		OI.controlPDP();
 	}
 
 	/**

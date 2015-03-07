@@ -33,12 +33,6 @@ public class DriveTrain {
     public static void slowDrive(double leftSpeed, double rightSpeed) {
     	drive.tankDrive(leftSpeed * 0.5, rightSpeed * 0.5);
     }
-    
-	public static void squaredDrive(double leftValue, double rightValue) {
-		leftValue = Math.signum(leftValue) * leftValue * leftValue;
-		rightValue = Math.signum(rightValue) * rightValue * rightValue;
-		tankDrive(leftValue, rightValue);
-	}
 	
 	public static void skidControl(double leftInput, double rightInput) {
 		
