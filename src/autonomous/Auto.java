@@ -9,7 +9,7 @@ public class Auto {
 	public static double turnTLength = 2.5;
 	public static double driveTLength = 2.3;
 	public static double turn2TLength = 1.2;
-	
+	//hello, from steve whos totally a programmer too
 	public static double captureSpeed = 0.5;
 	public static double turnSpeed = 0.55;
 	public static double driveSpeed = 0.7;
