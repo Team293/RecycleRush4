@@ -5,7 +5,7 @@ import subsystems.DriveTrain;
 import subsystems.Elevator;
 
 public class RobotSet extends Auto{
-	private static double driveT = driveTLength;
+	private static double driveT = 1.5;
 
 	public RobotSet() {
 		super();
