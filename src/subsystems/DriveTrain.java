@@ -30,6 +30,10 @@ public class DriveTrain {
 		drive.tankDrive(leftSpeed, rightSpeed);
 	}
 	
+    public static void slowDrive(double leftSpeed, double rightSpeed) {
+    	drive.tankDrive(leftSpeed * 0.5, rightSpeed * 0.5);
+    }
+    
 	public static void squaredDrive(double leftValue, double rightValue) {
 		leftValue = Math.signum(leftValue) * leftValue * leftValue;
 		rightValue = Math.signum(rightValue) * rightValue * rightValue;

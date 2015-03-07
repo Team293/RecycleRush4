@@ -29,11 +29,14 @@ public class OI {
 	private static final SpikeLEDButton rightBinB = new SpikeLEDButton(launchpad, Ports.rightBin, Ports.rightBinBOutput);
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
+	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
 
 	public static void controlDriveTrain() {
-		DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
-		SmartDashboard.putNumber("leftjoystick", leftJoystick.getY());
-		SmartDashboard.putNumber("leftjoystick", leftJoystick.getX());
+		if (slowDriveB.isHeld()) {
+			DriveTrain.slowDrive(-leftJoystick.getY(), -rightJoystick.getY());
+		} else {
+			DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
+		}
 	}
 
 	public static void controlArm() {
@@ -43,8 +46,8 @@ public class OI {
 		} else {
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
-			Arm.periodicControl();
 		}
+		Arm.periodicControl();
 	}
 
 	public static void monitorElevatorB(SpikeLEDButton button, int positionIndex) {
