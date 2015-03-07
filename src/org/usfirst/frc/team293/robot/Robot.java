@@ -27,13 +27,9 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		autonomousChooser.addObject("nothing", new Nothing());
-		autonomousChooser.addObject("bin & turn", new BinTurn());
 		autonomousChooser.addObject("bin, tote & turn", new BinToteTurn());
-		autonomousChooser.addObject("robot set", new RobotSet());
 
 		SmartDashboard.putData("Which Autonomous?", autonomousChooser);
-		//DriveTrain.gyroInit();
-		//SensorTurnRight.init();
 	}
 
 	public void autonomousInit() {
@@ -48,7 +44,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		SmartDashboard.putNumber("time", Auto.autoTimer.get());
 		selectedAuto.run();
-		//SensorTurnRight.blah();
 	}
 
 	/**
@@ -62,8 +57,6 @@ public class Robot extends IterativeRobot {
 		OI.controlElevator();
 		OI.controlArm();
 		OI.controlPDP();
-		/*DriveTrain.printEncoders();
-		DriveTrain.printScaledEncoder();*/
 	}
 
 	/**

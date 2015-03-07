@@ -8,10 +8,6 @@ public class Ports {
 	rightJoystick = 1,
 	launchpad = 2,
 
-	//buttons & axises
-
-	//leftjoystick
-
 	//rightjoystick
 	trigger = 1,
 

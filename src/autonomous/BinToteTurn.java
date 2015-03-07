@@ -13,7 +13,6 @@ public class BinToteTurn extends Auto{
 	private static double turnT = captureT + turnTLength;
 	private static double driveT = turnT + driveTLength;
 	private static double turn2T = driveT + turn2TLength;
-	private static boolean zeroed = false;
 	
 	public BinToteTurn() {
 		super();
@@ -36,19 +35,19 @@ public class BinToteTurn extends Auto{
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "lifting");
 		} else if (autoTimer.get() < captureT) {
-			DriveTrain.tankDrive(0.5, 0.5);
+			DriveTrain.tankDrive(captureSpeed, captureSpeed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "capturing");
 		} else if (autoTimer.get() < turnT) {
-			DriveTrain.tankDrive(0, 0.55);
+			DriveTrain.tankDrive(0, turnSpeed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "turning");
 		} else if (autoTimer.get() < driveT) {
-			DriveTrain.tankDrive(0.7, 0.7);
+			DriveTrain.tankDrive(driveSpeed, driveSpeed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
 		} else if (autoTimer.get() < turn2T) {
-			DriveTrain.tankDrive(-0.7, 0.7);
+			DriveTrain.tankDrive(-turn2Speed, turn2Speed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "turning2");
 		} else {
