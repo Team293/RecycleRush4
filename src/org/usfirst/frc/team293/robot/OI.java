@@ -30,6 +30,7 @@ public class OI {
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
+	private static final SpikeButton disableArmB = new SpikeButton(leftJoystick, Ports.disableArm);
 
 	public static void controlDriveTrain() {
 		if (slowDriveB.isHeld()) {
@@ -47,7 +48,11 @@ public class OI {
 			rightBinB.setOutput(false);
 			Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
 		}
-		Arm.periodicControl();
+		if (disableArmB.isToggled()) {
+			Arm.move(0);
+		} else {
+			Arm.periodicControl();
+		}
 	}
 
 	public static void monitorElevatorB(SpikeLEDButton button, int positionIndex) {

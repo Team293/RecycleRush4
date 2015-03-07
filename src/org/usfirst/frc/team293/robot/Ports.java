@@ -10,6 +10,9 @@ public class Ports {
 
 	//rightjoystick
 	trigger = 1,
+	
+	//leftjoystick
+	disableArm = 7,
 
 	//launchpad
 	rightBin = 4,
