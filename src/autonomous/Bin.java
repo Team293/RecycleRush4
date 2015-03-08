@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Bin extends Auto{
 	private static double liftT = liftTLength;
-	private static double turnT = liftT + turnTLength;
-	private static double driveT = turnT + driveTLength;
+	private static double turnT = liftT + turnTLength + 0.15;
+	private static double driveT = turnT + driveTLength - 0.35;
 
 
 	public Bin() {
