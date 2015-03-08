@@ -21,7 +21,7 @@ public class Auto {
 	
 	public void init() {
 		autoTimer.start();
-		if (SmartDashboard.getBoolean("Step Auto")) {
+		if (SmartDashboard.getBoolean("Middle Auto")) {
 			turnTLength = 2.4;
 		}
 	}
