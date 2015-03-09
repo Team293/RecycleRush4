@@ -120,7 +120,6 @@ public class Elevator {
 	public static void toggleOneTote() {
 		double error = Math.abs(targetPosition - PICKUP);
 		setPresetPosition((error < 0.25) ? 2:0);
-		
 	}
 
 	public static double getInches() {
