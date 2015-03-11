@@ -3,8 +3,6 @@ package org.usfirst.frc.team293.robot;
 
 import autonomous.*;
 
-import subsystems.DriveTrain;
-import subsystems.Elevator;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
