@@ -138,6 +138,9 @@ public class Elevator {
 	public static void periodicPControl() {
 		//go to the target position
 		double currentPosition = getInches();
+		if (currentPosition < PICKUP) {
+			finalTargetPosition = currentPosition;
+		}
 		double error = finalTargetPosition - targetPosition;
 		if (error >= 0.125) {
 			updateSoftPosition(true);

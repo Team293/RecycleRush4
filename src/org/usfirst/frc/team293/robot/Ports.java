@@ -15,10 +15,10 @@ public class Ports {
 	disableArm = 7,
 
 	//launchpad
-	rightBin = 4,
 	lever = 11,
 	elevatorUpB = 3,
 	elevatorDownB = 5,
+	elevatorMinBInput = 4,
 	elevator0BInput = 2,
 	elevator1BInput = 10,
 	elevator2BInput = 9,
@@ -28,9 +28,9 @@ public class Ports {
 
 	//LEDs
 	indicatorStrip = 2,
-	rightBinBOutput = 4,
 	elevatorUpBOutput = 5,
 	elevatorDownBOutput = 3,
+	elevatorMinBOutput = 4,
 	elevator0BOutput = 11,
 	elevator1BOutput = 10,
 	elevator2BOutput = 9,
