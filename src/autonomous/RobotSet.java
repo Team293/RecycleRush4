@@ -13,7 +13,7 @@ public class RobotSet extends Auto{
 
 	public void run() {
 		zero();
-		if (!zeroed && autoTimer.get() < driveT) {
+		if (zeroed && autoTimer.get() < driveT) {
 			DriveTrain.tankDrive(driveSpeed, driveSpeed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");
