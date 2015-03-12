@@ -15,12 +15,11 @@ public class CanPickup extends Auto{
 		zero();
 		if (zeroed && autoTimer.get() < liftT) {
 			Elevator.setPresetPosition(3);
-			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "lifting");
 		} else {
 			DriveTrain.stop();
-			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "stopping");
 		}
+		Elevator.periodicPControl();
 	}
 }
