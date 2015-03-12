@@ -12,14 +12,8 @@ public class RobotSet extends Auto{
 	}
 
 	public void run() {
-		if (Elevator.isDown()) {
-			zeroed = true;
-		}
-		if (!zeroed) {
-			Elevator.updateManualPosition(false);
-			Elevator.periodicPControl();
-			autoTimer.reset();
-		} else if (autoTimer.get() < driveT) {
+		zero();
+		if (!zeroed && autoTimer.get() < driveT) {
 			DriveTrain.tankDrive(driveSpeed, driveSpeed);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "driving");

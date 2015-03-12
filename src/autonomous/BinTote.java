@@ -9,20 +9,14 @@ public class BinTote extends Auto{
 	private static double captureT = liftT + captureTLength;
 	private static double turnT = captureT + turnTLength;
 	private static double driveT = turnT + driveTLength;
-	
+
 	public BinTote() {
 		super();
 	}
 
 	public void run() {
-		if (Elevator.isDown()) {
-			zeroed = true;
-		}
-		if (!zeroed) {
-			Elevator.updateManualPosition(false);
-			Elevator.periodicPControl();
-			autoTimer.reset();
-		} else if (autoTimer.get() < liftT) {
+		zero();
+		if (!zeroed && autoTimer.get() < liftT) {
 			Elevator.setPresetPosition(3);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "lifting");

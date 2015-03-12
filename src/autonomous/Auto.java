@@ -1,5 +1,6 @@
 package autonomous;
 
+import subsystems.Elevator;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +24,17 @@ public class Auto {
 		autoTimer.start();
 		if (SmartDashboard.getBoolean("Middle Auto")) {
 			turnTLength = 2.4;
+		}
+	}
+	
+	public void zero() {
+		if (Elevator.isDown()) {
+			zeroed = true;
+		}
+		if (!zeroed) {
+			Elevator.updateManualPosition(false);
+			Elevator.periodicPControl();
+			autoTimer.reset();
 		}
 	}
 	

@@ -12,14 +12,8 @@ public class CanPickup extends Auto{
 	}
 
 	public void run() {
-		if (Elevator.isDown()) {
-			zeroed = true;
-		}
-		if (!zeroed) {
-			Elevator.updateManualPosition(false);
-			Elevator.periodicPControl();
-			autoTimer.reset();
-		} else if (autoTimer.get() < liftT) {
+		zero();
+		if (!zeroed && autoTimer.get() < liftT) {
 			Elevator.setPresetPosition(3);
 			Elevator.periodicPControl();
 			SmartDashboard.putString("mode", "lifting");
