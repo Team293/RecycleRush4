@@ -55,6 +55,8 @@ public class Ports {
 	rToteLimit = 7,
 	elevatorTopLimit = 8,
 	elevatorBottomLimit = 9,
+	lOpticalLimit=10,
+	rOpticalLimit=12,
 	
 
 	//analog sensors
@@ -65,7 +67,9 @@ public class Ports {
 	leftDrive = 0,
 	rightDrive = 1,
 	elevator = 2,
-	arm = 3;
+	arm = 3,
+	lBelt=4,
+	rBelt=5;
 
 
 }
