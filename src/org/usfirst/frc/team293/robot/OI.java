@@ -33,14 +33,6 @@ public class OI {
 	private static final SpikeButton disableArmB = new SpikeButton(leftJoystick, Ports.disableArm);
 
 
-	public static void win(boolean isStarted) {
-		if (isStarted) {
-			//win
-		} else {
-			//win anyways
-		}
-	}
-
 	public static void controlDriveTrain() {
 		if (slowDriveB.isHeld()) {
 			DriveTrain.slowDrive(-leftJoystick.getY(), -rightJoystick.getY());
@@ -81,7 +73,6 @@ public class OI {
 			Elevator.setSoftMode(false);
 		}	
 		if (elevatorUpB.isHeld() || elevatorDownB.isHeld()) {
-			Elevator.setManualMode(true);
 			if (elevatorUpB.isHeld()) {
 				Elevator.updateManualPosition(true);
 			} else if(elevatorDownB.isHeld()) {
@@ -90,28 +81,20 @@ public class OI {
 		} else {
 			if (oneToteB.isBumped()) {
 				Elevator.toggleOneTote();
-				Elevator.setManualMode(false);
 			} else if (elevatorMinB.isBumped()) {
 				Elevator.setPosition(-50000);
-				Elevator.setManualMode(true);
 			} else if (elevator0B.isBumped()) {
 				Elevator.setPresetPosition(0);
-				Elevator.setManualMode(false);
 			} else if (elevator1B.isBumped()) {
 				Elevator.setPresetPosition(1);
-				Elevator.setManualMode(false);
 			} else if (elevator2B.isBumped()) {
 				Elevator.setPresetPosition(2);
-				Elevator.setManualMode(false);
 			} else if (elevator3B.isBumped()) {
 				Elevator.setPresetPosition(3);
-				Elevator.setManualMode(false);
 			} else if (elevator4B.isBumped()) {
 				Elevator.setPresetPosition(4);
-				Elevator.setManualMode(false);
 			} else if (elevator5B.isBumped()) {
 				Elevator.setPresetPosition(5);
-				Elevator.setManualMode(false);
 			}
 		}
 		Elevator.periodicPControl();

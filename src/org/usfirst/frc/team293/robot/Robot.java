@@ -20,6 +20,9 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 
+	private static void win() {
+		//win
+	}
 	SendableChooser autonomousChooser = new SendableChooser();
 	Auto selectedAuto;
 
@@ -59,8 +62,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		OI.controlDriveTrain();
 		OI.controlElevator();
-		OI.controlArm();
-		OI.win(true);
+		win();
 	}
 
 	/**

@@ -15,7 +15,6 @@ public class Elevator {
 	private static final SpikeLimit bottomLimit = new SpikeLimit(Ports.elevatorBottomLimit);
 	private static final SpikeLimit lToteLimit = new SpikeLimit(Ports.lToteLimit);
 	private static final SpikeLimit rToteLimit = new SpikeLimit(Ports.rToteLimit);
-	private static boolean manualMode = true;
 	private static boolean softMode = false;
 	private static double targetPosition = 0;
 	private static double finalTargetPosition = 0;
@@ -69,16 +68,6 @@ public class Elevator {
 			return true;
 		}
 		return false;
-	}
-
-	public static void setManualMode(boolean newMode) {
-		//sets whether is controlled manually or through preset positions
-		manualMode = newMode;
-	}
-
-	public static boolean getManualMode() {
-		//returns whether is controlled manually or through preset positions
-		return manualMode;
 	}
 
 	public static void setSoftMode(boolean mode) {
