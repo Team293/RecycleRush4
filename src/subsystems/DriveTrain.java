@@ -39,7 +39,7 @@ public class DriveTrain {
 	public static void arcadeDrive(double move, double rotate) {
 		drive.arcadeDrive(move, rotate);
 	}
-    //Underneath is all stuff for Straight drive
+    //Underneath is all stuff for Straight drive........................................................
     private static Gyro gyro;
 	private static PIDRobotDrive pidRobotDrive;	// this wraps RobotDrive
 	private static PIDGyro pidGyro;	
@@ -63,14 +63,14 @@ public class DriveTrain {
 		return distance;
 	}
 	
-	public static double getDistance() {
+	public static double getDistance() {//get avg encoder stuff.
 		return convertToDistance((leftEncoder.get() + rightEncoder.get())/2);
 	}
-	public static void printEncoders(){
+	public static void printEncoders(){//output raw encoders
 		SmartDashboard.putNumber("rightEncoder", -rightEncoder.get());
 		SmartDashboard.putNumber("leftEncoder", leftEncoder.get());
 	}
-	public static void printScaledEncoder(){
+	public static void printScaledEncoder(){//scaled to the right amount for drivetrain
 		SmartDashboard.putNumber("rightscaledEncoder", -rightEncoder.get()/256*3.14*diameter);
 		SmartDashboard.putNumber("leftscaledEncoder", leftEncoder.get()/256*3.14*diameter);
 	}
