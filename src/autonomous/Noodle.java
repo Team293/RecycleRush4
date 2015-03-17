@@ -18,7 +18,7 @@ public class Noodle extends Auto{
 			Elevator.setPresetPosition(3);
 			SmartDashboard.putString("mode", "lifting");
 		} else if (zeroed && autoTimer.get() < turnT) {
-			DriveTrain.tankDrive(-0.3, -0.7);
+			DriveTrain.turnleft();
 		}
 		Elevator.periodicPControl();
 	}
