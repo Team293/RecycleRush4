@@ -67,11 +67,7 @@ public class OI {
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
 		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
-		if (softSwitch.isHeld()) {
-			Elevator.setSoftMode(true);
-		} else {
-			Elevator.setSoftMode(false);
-		}	
+		Elevator.setSoftMode(softSwitch.isHeld());
 		if (elevatorUpB.isHeld() || elevatorDownB.isHeld()) {
 			if (elevatorUpB.isHeld()) {
 				Elevator.updateManualPosition(true);

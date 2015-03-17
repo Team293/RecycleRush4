@@ -128,7 +128,7 @@ public class Elevator {
 		//go to the target position
 		double currentPosition = getInches();
 		if (currentPosition < PICKUP) {
-			finalTargetPosition = currentPosition;
+			targetPosition = currentPosition;
 		}
 		double error = finalTargetPosition - targetPosition;
 		if (error >= 0.125) {
