@@ -27,7 +27,7 @@ public class Ports {
 	elevator5BInput = 1,
 
 	//LEDs
-	lIndicatorStrip = 4,
+	lIndicatorStrip = 1,
 	rIndicatorStrip = 2,
 	elevatorUpBOutput = 5,
 	elevatorDownBOutput = 3,
