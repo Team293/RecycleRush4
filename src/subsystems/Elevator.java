@@ -63,11 +63,12 @@ public class Elevator {
 		targetPosition = position;
 	}
 	
-	public static boolean isAligned() {
-		if (lToteLimit.isHeld() && rToteLimit.isHeld()) {
-			return true;
-		}
-		return false;
+	public static boolean lAligned() {
+		return lToteLimit.isHeld();
+	}
+	
+	public static boolean rAligned() {
+		return rToteLimit.isHeld();
 	}
 
 	public static void setSoftMode(boolean mode) {

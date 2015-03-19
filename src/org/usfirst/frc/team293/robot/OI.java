@@ -63,10 +63,10 @@ public class OI {
 	}
 
 	public static void controlElevator() {
-		launchpad.setOutput(Ports.indicatorStrip, Elevator.isAligned());
+		launchpad.setOutput(Ports.lIndicatorStrip, Elevator.lAligned());
+		launchpad.setOutput(Ports.rIndicatorStrip, Elevator.rAligned());
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
-		SmartDashboard.putBoolean("isAligned", Elevator.isAligned());
 		Elevator.setSoftMode(softSwitch.isHeld());
 		if (elevatorUpB.isHeld() || elevatorDownB.isHeld()) {
 			if (elevatorUpB.isHeld()) {
