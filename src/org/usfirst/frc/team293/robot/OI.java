@@ -30,8 +30,8 @@ public class OI {
 
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
-	private static final SpikeButton disableArmB = new SpikeButton(leftJoystick, Ports.disableArm);
-	
+	private static final SpikeButton canOn2TotesB = new SpikeButton(leftJoystick, Ports.canOn2TotesB);
+
 	private static boolean b5wasHeld = false;
 
 
@@ -43,14 +43,14 @@ public class OI {
 		}
 	}
 
-	public static void controlArm() {
+	/*public static void controlArm() {
 		Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
 		if (disableArmB.isToggled()) {
 			Arm.move(0);
 		} else {
 			Arm.periodicControl();
 		}
-	}
+	}*/
 
 	public static void monitorElevatorB(SpikeLEDButton button, double position) {
 		if (Elevator.getTargetPosition() == position) {
@@ -91,10 +91,10 @@ public class OI {
 				Elevator.setPresetPosition(3);
 			} else if (elevator4B.isBumped()) {
 				Elevator.setPresetPosition(4);
-			}/* else if (elevator5B.isBumped()) {
+			} else if (canOn2TotesB.isBumped()) {
 				Elevator.setPresetPosition(5);
-			}*/
-			
+			}
+
 			if (elevator5B.isHeld()) {
 				b5wasHeld = true;
 			}

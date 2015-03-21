@@ -12,7 +12,7 @@ public class Ports {
 	trigger = 1,
 	
 	//leftjoystick
-	disableArm = 7,
+	canOn2TotesB = 7,
 
 	//launchpad
 	lever = 11,
