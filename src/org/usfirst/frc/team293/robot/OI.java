@@ -31,6 +31,8 @@ public class OI {
 	private static final SpikeButton oneToteB = new SpikeButton(rightJoystick, Ports.trigger);
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
 	private static final SpikeButton disableArmB = new SpikeButton(leftJoystick, Ports.disableArm);
+	
+	private static boolean b5wasHeld = false;
 
 
 	public static void controlDriveTrain() {
@@ -89,9 +91,14 @@ public class OI {
 				Elevator.setPresetPosition(3);
 			} else if (elevator4B.isBumped()) {
 				Elevator.setPresetPosition(4);
-			} else if (elevator5B.isBumped()) {
+			}/* else if (elevator5B.isBumped()) {
 				Elevator.setPresetPosition(5);
+			}*/
+			
+			if (elevator5B.isHeld()) {
+				b5wasHeld = true;
 			}
+			SmartDashboard.putBoolean("5BwasHeld", b5wasHeld);
 		}
 		Elevator.periodicPControl();
 
