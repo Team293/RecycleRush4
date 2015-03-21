@@ -1,5 +1,7 @@
 package org.usfirst.frc.team293.robot;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+
 public class Ports {
 	public static final int 
 
@@ -10,7 +12,7 @@ public class Ports {
 
 	//rightjoystick
 	trigger = 1,
-	
+
 	//leftjoystick
 	canOn2TotesB = 7,
 
@@ -44,7 +46,7 @@ public class Ports {
 
 	arm0B = 8,
 	arm1B = 9,
-	
+
 	//Digital Input
 	leftDriveEncoder1 = 0,
 	leftDriveEncoder2 = 1,
@@ -56,12 +58,21 @@ public class Ports {
 	rToteLimit = 7,
 	elevatorTopLimit = 8,
 	elevatorBottomLimit = 9,
-	
+
+	lbScrewLimit = 0,
+	rbScrewLimit = 0,
+	lfScrewLimit = 0,
+	rfScrewLimit = 0,
+	lbToteLimit = 0,
+	rbToteLimit = 0,
+	lfToteLimit = 0,
+	rfToteLimit = 0,
+
 
 	//analog sensors
 	armPot = 1,
 	gyro = 0,
-	
+
 	//motors
 	leftDrive = 0,
 	rightDrive = 1,

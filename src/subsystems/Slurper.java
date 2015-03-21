@@ -5,13 +5,12 @@ import org.usfirst.frc.team293.robot.Ports;
 import SpikeLibrary.SpikeMath;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Talon;
 
 public class Slurper {
 	//l = left, r = right, b = back, f = front
 
-	private static final Talon lFinger = new Victor(Ports.lBelt);
-	private static final Talon rFinger = new Victor(Ports.rBelt);
+	private static final Relay lFinger = new Relay(Ports.lBelt);
+	private static final Relay rFinger = new Relay(Ports.rBelt);
 
 	private static final DigitalInput lbScrewLimit = new DigitalInput(Ports.lbScrewLimit);
 	private static final DigitalInput rbScrewLimit = new DigitalInput(Ports.rbScrewLimit);
@@ -23,24 +22,25 @@ public class Slurper {
 	private static final DigitalInput lfToteLimit = new DigitalInput(Ports.lfToteLimit);
 	private static final DigitalInput rfToteLimit = new DigitalInput(Ports.rfToteLimit);
 
-	private static void move(double lSpeed, double rSpeed) {
-		if (lbScrewLimit.get()) {
-			lSpeed = SpikeMath.cap(lSpeed, 0, 1);
-		} else if (lfScrewLimit.get()) {
-			lSpeed = SpikeMath.cap(lSpeed, -1, 0);
+	private static void move(Relay.Value lSpeed, Relay.Value rSpeed) {
+		if (lbScrewLimit.get() && lSpeed == Relay.Value.kReverse) {
+			lSpeed = Relay.Value.kOff;
+		} else if (lfScrewLimit.get() && lSpeed == Relay.Value.kForward) {
+			lSpeed = Relay.Value.kOff;
 		}
 
-		if (rbScrewLimit.get()) {
-			rSpeed = SpikeMath.cap(rSpeed, 0, 1);
-		} else if (rfScrewLimit.get()) {
-			rSpeed = SpikeMath.cap(rSpeed, -1, 0);
+		if (rbScrewLimit.get() && rSpeed == Relay.Value.kReverse) {
+			rSpeed = Relay.Value.kOff;
+		} else if (rfScrewLimit.get() && rSpeed == Relay.Value.kForward) {
+			rSpeed = Relay.Value.kOff;
 		}
+		rFinger.set(Relay.Value.kOff);
 
 		lFinger.set(lSpeed);
 		rFinger.set(rSpeed);
 	}
 
-	public static void manualMove(double speed) {
+	public static void manualMove(Relay.Value speed) {
 		move(speed, speed);
 	}
 
@@ -52,23 +52,23 @@ public class Slurper {
 	}
 
 	public static void autoMove() {
-		double lSpeed = 0;
-		double rSpeed = 0;
+		Relay.Value lSpeed = Relay.Value.kOff;
+		Relay.Value rSpeed = Relay.Value.kOff;
 
 		if (Elevator.getTargetPosition() < Elevator.positions[1]) {
-			lSpeed = 0.4;
-			rSpeed = 0.4;
+			lSpeed = Relay.Value.kForward;
+			rSpeed = Relay.Value.kForward;
 		} else {
 			if (toteHalfIn() && !lbToteLimit.get()) {
-				lSpeed = -0.4;
+				lSpeed = Relay.Value.kReverse;
 			} else if (!lbToteLimit.get()) {
-				lSpeed = 0.4;
+				lSpeed = Relay.Value.kReverse;
 			}
 
 			if (toteHalfIn() && !rbToteLimit.get()) {
-				rSpeed = -0.4;
+				rSpeed = Relay.Value.kReverse;
 			} else if (!rbToteLimit.get()) {
-				rSpeed = 0.4;
+				rSpeed = Relay.Value.kForward;
 			}
 		}
 		move(lSpeed, rSpeed);
