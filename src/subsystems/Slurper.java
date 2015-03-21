@@ -23,35 +23,7 @@ public class Slurper {
 	private static final DigitalInput lfToteLimit = new DigitalInput(Ports.lfToteLimit);
 	private static final DigitalInput rfToteLimit = new DigitalInput(Ports.rfToteLimit);
 
-	private static boolean toteHalfIn() {
-		if (lfToteLimit.get() && rfToteLimit.get()) {
-			return true;
-		}
-		return false;
-	}
-	
-	public static void autoMove() {
-		if (toteHalfIn() && !lbToteLimit.get() && !lbScrewLimit.get()) {
-			lFinger.set(-0.4);
-		} else if (!lbToteLimit.get() && !lfScrewLimit.get()) {
-			lFinger.set(0.4);
-		} else {
-			lFinger.set(0);
-		}
-
-		if (toteHalfIn() && !rbToteLimit.get() && !rbScrewLimit.get()) {
-			rFinger.set(-0.4);
-		} else if (!rbToteLimit.get() && !rfScrewLimit.get()) {
-			rFinger.set(0.4);
-		} else {
-			rFinger.set(0);
-		}
-	}
-
-	public static void manualMove(double speed) {
-		double lSpeed = speed;
-		double rSpeed = speed;
-
+	private static void move(double lSpeed, double rSpeed) {
 		if (lbScrewLimit.get()) {
 			lSpeed = SpikeMath.cap(lSpeed, 0, 1);
 		} else if (lfScrewLimit.get()) {
@@ -66,5 +38,39 @@ public class Slurper {
 
 		lFinger.set(lSpeed);
 		rFinger.set(rSpeed);
+	}
+
+	public static void manualMove(double speed) {
+		move(speed, speed);
+	}
+
+	private static boolean toteHalfIn() {
+		if (lfToteLimit.get() && rfToteLimit.get()) {
+			return true;
+		}
+		return false;
+	}
+
+	public static void autoMove() {
+		double lSpeed = 0;
+		double rSpeed = 0;
+
+		if (Elevator.getTargetPosition() < Elevator.positions[1]) {
+			lSpeed = 0.4;
+			rSpeed = 0.4;
+		} else {
+			if (toteHalfIn() && !lbToteLimit.get()) {
+				lSpeed = -0.4;
+			} else if (!lbToteLimit.get()) {
+				lSpeed = 0.4;
+			}
+
+			if (toteHalfIn() && !rbToteLimit.get()) {
+				rSpeed = -0.4;
+			} else if (!rbToteLimit.get()) {
+				rSpeed = 0.4;
+			}
+		}
+		move(lSpeed, rSpeed);
 	}
 }
