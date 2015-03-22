@@ -40,8 +40,15 @@ public class Slurper {
 		rFinger.set(rSpeed);
 	}
 
-	public static void manualMove(Relay.Value speed) {
-		move(speed, speed);
+	public static void manualMove() {
+		Relay.Value lSpeed = Relay.Value.kOff;
+		Relay.Value rSpeed = Relay.Value.kOff;
+		if (lbScrewLimit.get() || lbToteLimit.get()) {
+			lSpeed = Relay.Value.kForward;
+		} else if ( lfScrewLimit.get()) {
+			lSpeed = Relay.Value.kReverse;
+		}
+		move(lSpeed, rSpeed);
 	}
 
 	private static boolean toteHalfIn() {
