@@ -3,11 +3,13 @@ package org.usfirst.frc.team293.robot;
 import SpikeLibrary.SpikeButton;
 import SpikeLibrary.SpikeLEDButton;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import subsystems.Arm;
 import subsystems.DriveTrain;
 import subsystems.Elevator;
 import subsystems.PDP;
+import subsystems.Slurper;
 
 
 public class OI {
@@ -42,6 +44,20 @@ public class OI {
 			DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
 		}
 	}
+	
+/*	public static void controlSlurper() {
+		if (manualSlurperB.isHeld()) {
+			Relay.Value speed = Relay.Value.kOff;
+			if (slurperForwardB.isHeld()) {
+				speed = Relay.Value.kForward;
+			} else if (slurperBackwardB.isHeld()) {
+				speed = Relay.Value.kReverse;
+			}
+			Slurper.manualMove(speed);
+		} else {
+			Slurper.autoMove();
+		}
+	}*/
 
 	/*public static void controlArm() {
 		Arm.setPosition(-launchpad.getRawAxis(Ports.armA));

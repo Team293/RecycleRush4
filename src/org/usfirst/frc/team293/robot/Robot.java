@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		OI.controlDriveTrain();
 		OI.controlElevator();
+//		OI.controlSlurper();
 		win();
 	}
 
