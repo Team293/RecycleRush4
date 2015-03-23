@@ -44,6 +44,8 @@ public class OI {
 	}
 	
 	public static void controlSlurper() {
+		
+		
 		toggleSlurperB.setOutput(Slurper.isBack());
 		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());
 		

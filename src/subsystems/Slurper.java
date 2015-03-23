@@ -92,7 +92,7 @@ public class Slurper {
 			if (toteHalfIn() && !lbToteLimit.get()) {
 				lSpeed = Relay.Value.kReverse;
 			} else if (!lbToteLimit.get()) {
-				lSpeed = Relay.Value.kReverse;
+				lSpeed = Relay.Value.kForward;
 			}
 
 			if (toteHalfIn() && !rbToteLimit.get()) {
