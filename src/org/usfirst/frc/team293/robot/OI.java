@@ -46,7 +46,7 @@ public class OI {
 	}
 	
 	public static void controlSlurper() {
-		if (slurperManualB.isHeld()) {
+		if (slurperManualB.isBumped()) {
 			Slurper.manualMove(slurperToggleB.isBumped());
 		} else {
 			Slurper.autoMove();

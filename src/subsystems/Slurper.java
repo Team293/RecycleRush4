@@ -40,17 +40,32 @@ public class Slurper {
 		rFinger.set(rSpeed);
 	}
 
-	public static void manualMove(boolean toggleDirection) {
-		Relay.Value lSpeed = Relay.Value.kOff;
-		Relay.Value rSpeed = Relay.Value.kOff;
-		if (toggleDirection) {
-			if (lbScrewLimit.get() || lbToteLimit.get()) {
-				lSpeed = Relay.Value.kForward;
-			} else if ( lfScrewLimit.get()) {
-				lSpeed = Relay.Value.kReverse;
-			}
+	public static boolean isBack() {
+		if ((lbScrewLimit.get() && rbScrewLimit.get()) || (lbToteLimit.get() && lbToteLimit.get())) {
+			return true;
 		}
-		move(lSpeed, rSpeed);
+		return false;
+	}
+
+	public static boolean isForward() {
+		if (lfScrewLimit.get() && rfScrewLimit.get()) {
+			return true;
+		}
+		return false;
+
+	}
+
+	private static boolean targetDirection = false;
+
+	public static void manualMove(boolean toggleDirection) {
+		if (toggleDirection) {
+			targetDirection = !targetDirection;
+		}
+		if (targetDirection) {
+			move(Relay.Value.kForward, Relay.Value.kForward);
+		} else {
+			move(Relay.Value.kReverse, Relay.Value.kReverse);
+		}
 	}
 
 	private static boolean toteHalfIn() {
@@ -61,6 +76,12 @@ public class Slurper {
 	}
 
 	public static void autoMove() {
+		if (isBack()) {
+			targetDirection = false;
+		} else if (isForward()) {
+			targetDirection = true;
+		}
+
 		Relay.Value lSpeed = Relay.Value.kOff;
 		Relay.Value rSpeed = Relay.Value.kOff;
 
