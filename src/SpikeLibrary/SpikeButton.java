@@ -43,5 +43,9 @@ public class SpikeButton extends JoystickButton{
 		return toggle;
 	}
 	
+	public void setToggle(boolean toggle) {
+		this.toggle = toggle;
+	}
+	
 
 }

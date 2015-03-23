@@ -79,7 +79,11 @@ public class OI {
 		launchpad.setOutput(Ports.rIndicatorStrip, Elevator.rAligned());
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
-		Elevator.setSoftMode(softSwitch.isHeld());
+		if (launchpad.getRawAxis(Ports.armA) > 0) {
+			Elevator.setSoftMode(true);
+		} else {
+			Elevator.setSoftMode(false);
+		}
 		if (elevatorUpB.isHeld() || elevatorDownB.isHeld()) {
 			if (elevatorUpB.isHeld()) {
 				Elevator.updateManualPosition(true);
