@@ -45,19 +45,13 @@ public class OI {
 		}
 	}
 	
-/*	public static void controlSlurper() {
-		if (manualSlurperB.isHeld()) {
-			Relay.Value speed = Relay.Value.kOff;
-			if (slurperForwardB.isHeld()) {
-				speed = Relay.Value.kForward;
-			} else if (slurperBackwardB.isHeld()) {
-				speed = Relay.Value.kReverse;
-			}
-			Slurper.manualMove(speed);
+	public static void controlSlurper() {
+		if (slurperManualB.isHeld()) {
+			Slurper.manualMove(slurperToggleB.isBumped());
 		} else {
 			Slurper.autoMove();
 		}
-	}*/
+	}
 
 	/*public static void controlArm() {
 		Arm.setPosition(-launchpad.getRawAxis(Ports.armA));

@@ -40,13 +40,15 @@ public class Slurper {
 		rFinger.set(rSpeed);
 	}
 
-	public static void manualMove() {
+	public static void manualMove(boolean toggleDirection) {
 		Relay.Value lSpeed = Relay.Value.kOff;
 		Relay.Value rSpeed = Relay.Value.kOff;
-		if (lbScrewLimit.get() || lbToteLimit.get()) {
-			lSpeed = Relay.Value.kForward;
-		} else if ( lfScrewLimit.get()) {
-			lSpeed = Relay.Value.kReverse;
+		if (toggleDirection) {
+			if (lbScrewLimit.get() || lbToteLimit.get()) {
+				lSpeed = Relay.Value.kForward;
+			} else if ( lfScrewLimit.get()) {
+				lSpeed = Relay.Value.kReverse;
+			}
 		}
 		move(lSpeed, rSpeed);
 	}
