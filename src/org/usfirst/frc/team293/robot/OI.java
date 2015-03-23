@@ -1,6 +1,7 @@
 package org.usfirst.frc.team293.robot;
 
 import SpikeLibrary.SpikeButton;
+import SpikeLibrary.SpikeLED;
 import SpikeLibrary.SpikeLEDButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Relay;
@@ -34,6 +35,9 @@ public class OI {
 	private static final SpikeLEDButton toggleSlurperB = new SpikeLEDButton(launchpad, Ports.toggleSlurperBInput, Ports.toggleSlurperBOutput);
 	
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
+	
+	private static final SpikeLED lStrip = new SpikeLED(launchpad, Ports.lIndicatorStrip);
+	private static final SpikeLED rStrip = new SpikeLED(launchpad, Ports.rIndicatorStrip);
 
 	public static void controlDriveTrain() {
 		if (slowDriveB.isHeld()) {
@@ -44,7 +48,10 @@ public class OI {
 	}
 	
 	public static void controlSlurper() {
-		
+		lStrip.setOutput(Slurper.lbToteLimit.get());
+		lStrip.flash(Slurper.lfToteLimit.get() && !Slurper.lbToteLimit.get());
+		rStrip.setOutput(Slurper.rbToteLimit.get());
+		rStrip.flash(Slurper.rfToteLimit.get() && !Slurper.rbToteLimit.get());
 		
 		toggleSlurperB.setOutput(Slurper.isBack());
 		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());

@@ -17,10 +17,10 @@ public class Slurper {
 	private static final DigitalInput lfScrewLimit = new DigitalInput(Ports.lfScrewLimit);
 	private static final DigitalInput rfScrewLimit = new DigitalInput(Ports.rfScrewLimit);
 
-	private static final DigitalInput lbToteLimit = new DigitalInput(Ports.lbToteLimit);
-	private static final DigitalInput rbToteLimit = new DigitalInput(Ports.rbToteLimit);
-	private static final DigitalInput lfToteLimit = new DigitalInput(Ports.lfToteLimit);
-	private static final DigitalInput rfToteLimit = new DigitalInput(Ports.rfToteLimit);
+	public static final DigitalInput lbToteLimit = new DigitalInput(Ports.lbToteLimit);
+	public static final DigitalInput rbToteLimit = new DigitalInput(Ports.rbToteLimit);
+	public static final DigitalInput lfToteLimit = new DigitalInput(Ports.lfToteLimit);
+	public static final DigitalInput rfToteLimit = new DigitalInput(Ports.rfToteLimit);
 
 	private static void move(Relay.Value lSpeed, Relay.Value rSpeed) {
 		if (lbScrewLimit.get() && lSpeed == Relay.Value.kReverse) {
