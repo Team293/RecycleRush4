@@ -18,9 +18,9 @@ public class Ports {
 
 	//launchpad
 	lever = 11,
+	toggleSlurperBInput = 4,
 	elevatorUpB = 3,
 	elevatorDownB = 5,
-	elevatorMinBInput = 4,
 	elevator0BInput = 2,
 	elevator1BInput = 10,
 	elevator2BInput = 9,
@@ -31,9 +31,9 @@ public class Ports {
 	//LEDs
 	lIndicatorStrip = 1,
 	rIndicatorStrip = 2,
+	toggleSlurperBOutput = 4,
 	elevatorUpBOutput = 5,
 	elevatorDownBOutput = 3,
-	elevatorMinBOutput = 4,
 	elevator0BOutput = 11,
 	elevator1BOutput = 10,
 	elevator2BOutput = 9,
