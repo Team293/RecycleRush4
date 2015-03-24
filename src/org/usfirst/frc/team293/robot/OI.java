@@ -1,5 +1,6 @@
 package org.usfirst.frc.team293.robot;
 
+import SpikeLibrary.SpikeAxis;
 import SpikeLibrary.SpikeButton;
 import SpikeLibrary.SpikeLED;
 import SpikeLibrary.SpikeLEDButton;
@@ -33,6 +34,8 @@ public class OI {
 
 	private static final SpikeButton slurperManualB = new SpikeButton(launchpad, Ports.lever);
 	private static final SpikeLEDButton toggleSlurperB = new SpikeLEDButton(launchpad, Ports.toggleSlurperBInput, Ports.toggleSlurperBOutput);
+	
+	private static final SpikeAxis softNob = new SpikeAxis(launchpad, Ports.nobA);
 	
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
 	
@@ -82,7 +85,7 @@ public class OI {
 		launchpad.setOutput(Ports.rIndicatorStrip, Elevator.rAligned());
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
-		if (launchpad.getRawAxis(Ports.armA) > 0) {
+		if (softNob.get() > 0) {
 			Elevator.setSoftMode(true);
 		} else {
 			Elevator.setSoftMode(false);
