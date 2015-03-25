@@ -42,6 +42,7 @@ public class Ports {
 	elevator5BOutput = 6,
 
 	elevatorA = 3,
+	nobA = 6,
 	armA = 6,
 
 	arm0B = 8,

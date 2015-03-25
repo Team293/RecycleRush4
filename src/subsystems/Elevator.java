@@ -24,6 +24,7 @@ public class Elevator {
 	private static final double CANONTOTE = 20;
 	private static final double TWOTOTE = 28;
 	private static final double CANONTWOTOTE = 31;
+	private static final double MAX = 31.9;
 	public static double[] positions = new double[] {PICKUP, TRAVEL, ONETOTE, CANONTOTE, TWOTOTE, CANONTWOTOTE};
 	private static double kP = 1.19;
 	private static final double encoderScale = 512; //counts per rotation
@@ -46,8 +47,8 @@ public class Elevator {
 		SmartDashboard.putBoolean("bottomLimit", bottomLimit.isHeld());
 		if (topLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, -1, 0);
-			finalTargetPosition = 32;
-			targetPosition = 32;
+			finalTargetPosition = MAX;
+			targetPosition = MAX;
 		} else if (bottomLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, 0, 1);
 			encoder.reset();
@@ -126,11 +127,9 @@ public class Elevator {
 	}
 
 	public static void periodicPControl() {
+		SmartDashboard.putNumber("encoder", encoder.get());
 		//go to the target position
 		double currentPosition = getInches();
-		if (currentPosition < PICKUP) {
-			targetPosition = currentPosition;
-		}
 		double error = finalTargetPosition - targetPosition;
 		if (error >= 0.125) {
 			updateSoftPosition(true);
