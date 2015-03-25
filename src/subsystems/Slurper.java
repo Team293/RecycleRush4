@@ -23,7 +23,7 @@ public class Slurper {
 	public static final int reverse=-1;
 
 	private static void move() {
-		if (lbScrewLimit.get() && lSpeed == lFinger.set(lSpeed)) {
+		if (lbScrewLimit.get() && lSpeed == lFinger.set(forward)) {
 			lSpeed = Relay.Value.kOff;
 		} else if (lfScrewLimit.get() && lSpeed == Relay.Value.kForward) {
 			lSpeed = Relay.Value.kOff;

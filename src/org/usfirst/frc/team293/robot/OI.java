@@ -50,21 +50,7 @@ public class OI {
 		}
 	}
 	
-	public static void controlSlurper() {
-		lStrip.setOutput(Slurper.lbToteLimit.get());
-		lStrip.flash(Slurper.lfToteLimit.get() && !Slurper.lbToteLimit.get());
-		rStrip.setOutput(Slurper.rbToteLimit.get());
-		rStrip.flash(Slurper.rfToteLimit.get() && !Slurper.rbToteLimit.get());
-		
-		toggleSlurperB.setOutput(Slurper.isBack());
-		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());
-		
-		if (slurperManualB.isBumped()) {
-			Slurper.manualMove(toggleSlurperB.isBumped());
-		} else {
-			Slurper.autoMove();
-		}
-	}
+
 
 	/*public static void controlArm() {
 		Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
