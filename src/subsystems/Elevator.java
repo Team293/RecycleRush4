@@ -36,7 +36,7 @@ public class Elevator {
 	}
 	public static void reset() {
 		encoder.reset();
-		encoder.setDistancePerPulse(0.01477);
+//		encoder.setDistancePerPulse(0.01477);
 		targetPosition = 0;
 		finalTargetPosition = 0;
 	}
@@ -47,8 +47,8 @@ public class Elevator {
 		SmartDashboard.putBoolean("bottomLimit", bottomLimit.isHeld());
 		if (topLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, -1, 0);
-			finalTargetPosition = MAX;
-			targetPosition = MAX;
+			finalTargetPosition = CANONTWOTOTE;
+			targetPosition = CANONTWOTOTE;
 		} else if (bottomLimit.isHeld()) {
 			speed = SpikeMath.cap(speed, 0, 1);
 			encoder.reset();

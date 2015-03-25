@@ -12,43 +12,51 @@ public class Slurper {
 	private static final Talon lFinger = new Talon(Ports.lBelt);
 	private static final Talon rFinger = new Talon(Ports.rBelt);
 
-	private static final DigitalInput lbScrewLimit = new DigitalInput(Ports.lbScrewLimit);
-	private static final DigitalInput rbScrewLimit = new DigitalInput(Ports.rbScrewLimit);
-	private static final DigitalInput lfScrewLimit = new DigitalInput(Ports.lfScrewLimit);
-	private static final DigitalInput rfScrewLimit = new DigitalInput(Ports.rfScrewLimit);
+	private static final DigitalInput lbLimit = new DigitalInput(Ports.lbScrewLimit);
+	private static final DigitalInput rbLimit = new DigitalInput(Ports.rbScrewLimit);
+	private static final DigitalInput lfLimit = new DigitalInput(Ports.lfScrewLimit);
+	private static final DigitalInput rfLimit = new DigitalInput(Ports.rfScrewLimit);
+	private static final DigitalInput lOpticalLimit = new DigitalInput(Ports.lbToteLimit);
+	private static final DigitalInput rOpticalLimit = new DigitalInput(Ports.rbToteLimit);
+	
+	private static final double speed = 1;
+	private static final double forward = speed;
+	private static final double stop = 0;
+	private static final double reverse = -speed;
 
-	public static final DigitalInput lbToteLimit = new DigitalInput(Ports.lbToteLimit);
-	public static final DigitalInput rbToteLimit = new DigitalInput(Ports.rbToteLimit);
-	public static final int forward=1;
-	public static final int reverse=-1;
-
-	private static void move() {
-		if (lbScrewLimit.get() && lSpeed == lFinger.set(forward)) {
-			lSpeed = Relay.Value.kOff;
-		} else if (lfScrewLimit.get() && lSpeed == Relay.Value.kForward) {
-			lSpeed = Relay.Value.kOff;
+	private static void move(double lSpeed, double rSpeed) {
+		if (lbLimit.get() && lSpeed == reverse) {
+			lSpeed = stop;
+		} else if (lfLimit.get() && lSpeed == forward) {
+			lSpeed = stop;
 		}
 
-		if (rbScrewLimit.get() && rSpeed == Relay.Value.kReverse) {
-			rSpeed = Relay.Value.kOff;
-		} else if (rfScrewLimit.get() && rSpeed == Relay.Value.kForward) {
-			rSpeed = Relay.Value.kOff;
+		if (rbLimit.get() && rSpeed == reverse) {
+			rSpeed = stop;
+		} else if (rfLimit.get() && rSpeed == forward) {
+			rSpeed = stop;
 		}
-		rFinger.set(Relay.Value.kOff);
 
 		lFinger.set(lSpeed);
 		rFinger.set(rSpeed);
 	}
 
 	public static boolean isBack() {
-		if ((lbScrewLimit.get() && rbScrewLimit.get()) || (lbToteLimit.get() && lbToteLimit.get())) {
+		if (lbLimit.get() && rbLimit.get()) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isHalfIn() {
+		if (lOpticalLimit.get() && rOpticalLimit.get()) {
 			return true;
 		}
 		return false;
 	}
 
 	public static boolean isForward() {
-		if (lfScrewLimit.get() && rfScrewLimit.get()) {
+		if (lfLimit.get() && rfLimit.get()) {
 			return true;
 		}
 		return false;
@@ -62,10 +70,38 @@ public class Slurper {
 			targetDirection = !targetDirection;
 		}
 		if (targetDirection) {
-			move(lfinger, Relay.Value.kForward);
+			move(forward, forward);
 		} else {
-			move(Relay.Value.kReverse, Relay.Value.kReverse);
+			move(reverse, reverse);
+		}
+	}
+	
+	public static void autoMove() {
+		if (isBack()) {
+			targetDirection = false;
+		} else if (isForward()) {
+			targetDirection = true;
 		}
 
+		double lSpeed = stop;
+		double rSpeed = stop;
+
+		if (Elevator.getTargetPosition() < Elevator.positions[1]) {
+			lSpeed = forward;
+			rSpeed = forward;
+		} else {
+			if (isHalfIn() && !lbLimit.get()) {
+				lSpeed = reverse;
+			} else if (!lbLimit.get()) {
+				lSpeed = forward;
+			}
+
+			if (isHalfIn() && !rbLimit.get()) {
+				rSpeed = reverse;
+			} else if (!rbLimit.get()) {
+				rSpeed = forward;
+			}
+		}
+		move(lSpeed, rSpeed);
 	}
 }
