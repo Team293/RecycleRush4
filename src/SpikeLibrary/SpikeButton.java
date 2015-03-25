@@ -20,6 +20,7 @@ public class SpikeButton extends JoystickButton{
 	
 	private void update() {
 		previous = current;
+//		current = super.get();
 		current = joystick.getRawButton(buttonNumber);
 	}
 	
