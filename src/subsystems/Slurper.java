@@ -4,13 +4,13 @@ import org.usfirst.frc.team293.robot.Ports;
 
 import SpikeLibrary.SpikeMath;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Talon;
 
 public class Slurper {
 	//l = left, r = right, b = back, f = front
 
-	private static final Relay lFinger = new Relay(Ports.lBelt);
-	private static final Relay rFinger = new Relay(Ports.rBelt);
+	private static final Talon lFinger = new Talon(Ports.lBelt);
+	private static final Talon rFinger = new Talon(Ports.rBelt);
 
 	private static final DigitalInput lbScrewLimit = new DigitalInput(Ports.lbScrewLimit);
 	private static final DigitalInput rbScrewLimit = new DigitalInput(Ports.rbScrewLimit);
@@ -19,11 +19,11 @@ public class Slurper {
 
 	public static final DigitalInput lbToteLimit = new DigitalInput(Ports.lbToteLimit);
 	public static final DigitalInput rbToteLimit = new DigitalInput(Ports.rbToteLimit);
-	public static final DigitalInput lfToteLimit = new DigitalInput(Ports.lfToteLimit);
-	public static final DigitalInput rfToteLimit = new DigitalInput(Ports.rfToteLimit);
+	public static final int forward=1;
+	public static final int reverse=-1;
 
-	private static void move(Relay.Value lSpeed, Relay.Value rSpeed) {
-		if (lbScrewLimit.get() && lSpeed == Relay.Value.kReverse) {
+	private static void move() {
+		if (lbScrewLimit.get() && lSpeed == lFinger.set(lSpeed)) {
 			lSpeed = Relay.Value.kOff;
 		} else if (lfScrewLimit.get() && lSpeed == Relay.Value.kForward) {
 			lSpeed = Relay.Value.kOff;
@@ -62,45 +62,10 @@ public class Slurper {
 			targetDirection = !targetDirection;
 		}
 		if (targetDirection) {
-			move(Relay.Value.kForward, Relay.Value.kForward);
+			move(lfinger, Relay.Value.kForward);
 		} else {
 			move(Relay.Value.kReverse, Relay.Value.kReverse);
 		}
-	}
 
-	private static boolean toteHalfIn() {
-		if (lfToteLimit.get() && rfToteLimit.get()) {
-			return true;
-		}
-		return false;
-	}
-
-	public static void autoMove() {
-		if (isBack()) {
-			targetDirection = false;
-		} else if (isForward()) {
-			targetDirection = true;
-		}
-
-		Relay.Value lSpeed = Relay.Value.kOff;
-		Relay.Value rSpeed = Relay.Value.kOff;
-
-		if (Elevator.getTargetPosition() < Elevator.positions[1]) {
-			lSpeed = Relay.Value.kForward;
-			rSpeed = Relay.Value.kForward;
-		} else {
-			if (toteHalfIn() && !lbToteLimit.get()) {
-				lSpeed = Relay.Value.kReverse;
-			} else if (!lbToteLimit.get()) {
-				lSpeed = Relay.Value.kForward;
-			}
-
-			if (toteHalfIn() && !rbToteLimit.get()) {
-				rSpeed = Relay.Value.kReverse;
-			} else if (!rbToteLimit.get()) {
-				rSpeed = Relay.Value.kForward;
-			}
-		}
-		move(lSpeed, rSpeed);
 	}
 }
