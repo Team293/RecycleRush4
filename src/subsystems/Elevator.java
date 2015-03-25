@@ -13,8 +13,6 @@ public class Elevator {
 	private static final Encoder encoder = new Encoder(Ports.elevatorEncoder1, Ports.elevatorEncoder2);
 	private static final SpikeLimit topLimit = new SpikeLimit(Ports.elevatorTopLimit);
 	private static final SpikeLimit bottomLimit = new SpikeLimit(Ports.elevatorBottomLimit);
-	private static final SpikeLimit lToteLimit = new SpikeLimit(Ports.lToteLimit);
-	private static final SpikeLimit rToteLimit = new SpikeLimit(Ports.rToteLimit);
 	private static boolean softMode = false;
 	private static double targetPosition = 0;
 	private static double finalTargetPosition = 0;
@@ -62,14 +60,6 @@ public class Elevator {
 	
 	public static void setPosition(double position) {
 		targetPosition = position;
-	}
-	
-	public static boolean lAligned() {
-		return lToteLimit.isHeld();
-	}
-	
-	public static boolean rAligned() {
-		return rToteLimit.isHeld();
 	}
 
 	public static void setSoftMode(boolean mode) {

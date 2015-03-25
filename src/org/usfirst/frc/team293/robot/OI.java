@@ -76,8 +76,6 @@ public class OI {
 	}
 
 	public static void controlElevator() {
-		launchpad.setOutput(Ports.lIndicatorStrip, Elevator.lAligned());
-		launchpad.setOutput(Ports.rIndicatorStrip, Elevator.rAligned());
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
 		if (softNob.get() > 0) {
