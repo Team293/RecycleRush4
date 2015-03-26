@@ -29,7 +29,7 @@ public class Slurper {
 	private static boolean targetDirection = false;
 
 
-	private static void move(double Speed) {//why would we need control of either side.  I think one speed should be fine
+	private static void move() {//why would we need control of either side.  I think one speed should be fine
 		if (lbLimit.get() && Speed == reverse) //this is fine then we can use one speed.
             //read comments on new foward position boolean
 			Speed = stop;
@@ -47,8 +47,8 @@ public class Slurper {
 			fowardposition=true;
 		}
         if (fowardposition==true){
-		lFinger.set(Speed);//set speed of slurpers
-		rFinger.set(Speed);//set speed on slurpers.
+		lFinger.set(speed);//set speed of slurpers
+		rFinger.set(speed);//set speed on slurpers.
         }
         if (fowardposition==false){
         lFinger.set(reverse);//set speed of slurpers
