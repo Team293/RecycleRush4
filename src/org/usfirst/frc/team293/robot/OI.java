@@ -53,9 +53,7 @@ public class OI {
 	public static void controlSlurper() {//manual control of the slurper
 		toggleSlurperB.setOutput(Slurper.isBack());//set the slurper button LED output
 		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());//only if we're off the limits.
-        Slurper.manualMove(toggleSlurperB.Move());
-	}
-
+        Slurper.Move;
 
 	public static void monitorElevatorB(SpikeLEDButton button, double position) {
 		button.flash(Elevator.getTargetPosition() == position && !Elevator.onTarget());
