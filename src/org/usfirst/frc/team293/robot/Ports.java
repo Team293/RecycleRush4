@@ -52,10 +52,10 @@ public class Ports {
 
 	lbLimit = 11,
 	rbLimit = 10,
-	lfLimit = 12,
-	rfLimit = 12,
-	lOpticalLimit = 12,
-	rOpticalLimit = 12,
+	lfLimit = 1,
+	rfLimit = 0,
+	lOpticalLimit = 2,
+	rOpticalLimit = 3,
 	
 	lToteLimit = 6,
 	rToteLimit = 7,
