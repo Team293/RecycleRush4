@@ -19,12 +19,13 @@ public class Slurper {
 	private static final DigitalInput lOpticalLimit = new DigitalInput(Ports.lOpticalLimit);
 	private static final DigitalInput rOpticalLimit = new DigitalInput(Ports.rOpticalLimit);
 	
-	private static final double speed = 1;
-	private static final double forward = speed;
+	private static final double forward = 1;
 	private static final double stop = 0;
-	private static final double reverse = -speed;
+	private static final double reverse = -forward;
+	private static boolean targetDirection = false;
 
 	private static void move(double lSpeed, double rSpeed) {
+		//prevents from going through limits
 		if (lbLimit.get() && lSpeed == reverse) {
 			lSpeed = stop;
 		} else if (lfLimit.get() && lSpeed == forward) {
@@ -63,12 +64,12 @@ public class Slurper {
 
 	}
 
-	private static boolean targetDirection = false;
-
 	public static void manualMove(boolean toggleDirection) {
 		if (toggleDirection) {
+			//changes target direction if button is hit
 			targetDirection = !targetDirection;
 		}
+		//moves in target direction, forward is true
 		if (targetDirection) {
 			move(forward, forward);
 		} else {
@@ -77,31 +78,40 @@ public class Slurper {
 	}
 	
 	public static void autoMove() {
+		//moves automatically based on where a tote is sensed
+		
+		//updates target direction based on current position in case switched back into manual mode
 		if (isBack()) {
 			targetDirection = false;
 		} else if (isForward()) {
 			targetDirection = true;
 		}
 
+		//default is don't move
 		double lSpeed = stop;
 		double rSpeed = stop;
 
+		//if releasing a stack, go forwards
 		if (Elevator.getTargetPosition() < Elevator.positions[1]) {
 			lSpeed = forward;
 			rSpeed = forward;
 		} else {
+			//if a tote is partway in, move backwards
 			if (isHalfIn() && !lbLimit.get()) {
 				lSpeed = reverse;
 			} else if (!lbLimit.get()) {
+				//if there is no tote, reset to forwards
 				lSpeed = forward;
 			}
 
+			//same stuff for the right side
 			if (isHalfIn() && !rbLimit.get()) {
 				rSpeed = reverse;
 			} else if (!rbLimit.get()) {
 				rSpeed = forward;
 			}
 		}
+		//actually set the speeds
 		move(lSpeed, rSpeed);
 	}
 }
