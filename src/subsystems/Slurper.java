@@ -2,7 +2,6 @@ package subsystems;
 
 import org.usfirst.frc.team293.robot.Ports;
 
-import SpikeLibrary.SpikeMath;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -12,19 +11,21 @@ public class Slurper {
 	private static final Talon lFinger = new Talon(Ports.lBelt);
 	private static final Talon rFinger = new Talon(Ports.rBelt);
 
-	private static final DigitalInput lbLimit = new DigitalInput(Ports.lbLimit);
-	private static final DigitalInput rbLimit = new DigitalInput(Ports.rbLimit);
+	public static final DigitalInput lbLimit = new DigitalInput(Ports.lbLimit);
+	public static final DigitalInput rbLimit = new DigitalInput(Ports.rbLimit);
 	private static final DigitalInput lfLimit = new DigitalInput(Ports.lfLimit);
 	private static final DigitalInput rfLimit = new DigitalInput(Ports.rfLimit);
 	private static final DigitalInput lOpticalLimit = new DigitalInput(Ports.lOpticalLimit);
 	private static final DigitalInput rOpticalLimit = new DigitalInput(Ports.rOpticalLimit);
-	
-	private static final double forward = 1;
+	private static final DigitalInput lToteLimit = new DigitalInput(Ports.lToteLimit);
+	private static final DigitalInput rToteLimit = new DigitalInput(Ports.rToteLimit);
+
+	private static final double forward = 0.15;
 	private static final double stop = 0;
 	private static final double reverse = -forward;
-	private static boolean targetDirection = false;
+	private static boolean targetDirection = true;
 
-	private static void move(double lSpeed, double rSpeed) {
+	public static void move(double lSpeed, double rSpeed) {
 		//prevents from going through limits
 		if (lbLimit.get() && lSpeed == reverse) {
 			lSpeed = stop;
@@ -38,7 +39,7 @@ public class Slurper {
 			rSpeed = stop;
 		}
 
-		lFinger.set(lSpeed);
+		lFinger.set(-lSpeed);
 		rFinger.set(rSpeed);
 	}
 
@@ -99,7 +100,7 @@ public class Slurper {
 			//if a tote is partway in, move backwards
 			if (isHalfIn() && !lbLimit.get()) {
 				lSpeed = reverse;
-			} else if (!lbLimit.get()) {
+			} else if (!lbLimit.get() && !rbLimit.get()) {
 				//if there is no tote, reset to forwards
 				lSpeed = forward;
 			}
@@ -107,7 +108,7 @@ public class Slurper {
 			//same stuff for the right side
 			if (isHalfIn() && !rbLimit.get()) {
 				rSpeed = reverse;
-			} else if (!rbLimit.get()) {
+			} else if (!lbLimit.get() && !rbLimit.get()) {
 				rSpeed = forward;
 			}
 		}

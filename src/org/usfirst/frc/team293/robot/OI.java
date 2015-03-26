@@ -51,6 +51,9 @@ public class OI {
 	}
 
 	public static void controlSlurper() {
+		lStrip.setOutput(Slurper.lbLimit.get());
+		rStrip.setOutput(Slurper.rbLimit.get());
+		
 		toggleSlurperB.setOutput(Slurper.isBack());
 		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());
 		
@@ -59,8 +62,7 @@ public class OI {
 		} else {
 			Slurper.autoMove();
 		}
-	}
-        
+	}        
 
 	public static void monitorElevatorB(SpikeLEDButton button, double position) {
 		button.flash(Elevator.getTargetPosition() == position && !Elevator.onTarget());
@@ -70,7 +72,7 @@ public class OI {
 	public static void controlElevator() {
 		elevatorUpB.setOutput(elevatorUpB.isHeld());
 		elevatorDownB.setOutput(elevatorDownB.isHeld());
-		if (softNob.get() > 0) {
+		if (softNob.get() < 0) {
 			Elevator.setSoftMode(true);
 		} else {
 			Elevator.setSoftMode(false);

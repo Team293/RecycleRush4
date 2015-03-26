@@ -50,12 +50,15 @@ public class Ports {
 	elevatorTopLimit = 8,
 	elevatorBottomLimit = 9,
 
-	lbLimit = 6,
-	rbLimit = 7,
-	lfLimit = 1,
-	rfLimit = 0,
-	lOpticalLimit = 3,
-	rOpticalLimit = 2,
+	lbLimit = 11,
+	rbLimit = 10,
+	lfLimit = 12,
+	rfLimit = 12,
+	lOpticalLimit = 12,
+	rOpticalLimit = 12,
+	
+	lToteLimit = 6,
+	rToteLimit = 7,
 
 	//analog sensors
 	armPot = 1,
