@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Talon;
 
 public class Slurper {
 	//l = left, r = right, b = back, f = front
-
+        //CAN WE PLZ COMMENT LOL
 	private static final Talon lFinger = new Talon(Ports.lBelt);
 	private static final Talon rFinger = new Talon(Ports.rBelt);
 
@@ -18,7 +18,7 @@ public class Slurper {
 	private static final DigitalInput rfLimit = new DigitalInput(Ports.rfLimit);
 	private static final DigitalInput lOpticalLimit = new DigitalInput(Ports.lOpticalLimit);
 	private static final DigitalInput rOpticalLimit = new DigitalInput(Ports.rOpticalLimit);
-	
+
 	private static final double speed = 1;
 	private static final double forward = speed;
 	private static final double stop = 0;
@@ -47,7 +47,7 @@ public class Slurper {
 		}
 		return false;
 	}
-	
+
 	public static boolean isHalfIn() {
 		if (lOpticalLimit.get() && rOpticalLimit.get()) {
 			return true;
@@ -75,7 +75,7 @@ public class Slurper {
 			move(reverse, reverse);
 		}
 	}
-	
+
 	public static void autoMove() {
 		if (isBack()) {
 			targetDirection = false;
