@@ -24,21 +24,24 @@ public class Slurper {
 	private static final double stop = 0;
 	private static final double reverse = -speed;
 
+	private static boolean targetDirection = false;
+
+
 	private static void move(double Speed) {//why would we need control of either side.  I think one speed should be fine
-		if (lbLimit.get() && Speed == reverse) {//this is slow on vrm, we can probably avoid this, but whatever
+		if (lbLimit.get() && Speed == reverse) //this is fine then we can use one speed.
 			Speed = stop;
-		} else if (lfLimit.get() && Speed == forward) {
+		 else if (lfLimit.get() && Speed == forward) {
 			Speed = stop;
 		}
 
-		if (rbLimit.get() && rSpeed == reverse) {
-			rSpeed = stop;
+		if (rbLimit.get() && Speed == reverse) {
+			Speed = stop;
 		} else if (rfLimit.get() && rSpeed == forward) {
-			rSpeed = stop;
+			Speed = stop;
 		}
 
-		lFinger.set(lSpeed);
-		rFinger.set(rSpeed);
+		lFinger.set(Speed);//set speed of slurpers
+		rFinger.set(Speed);//set speed on slurpers.
 	}
 
 	public static boolean isBack() {//a listener
@@ -56,10 +59,8 @@ public class Slurper {
 
 	}
 
-	private static boolean targetDirection = false;
-
-	public static void manualMove(boolean toggleDirection) {//can't we integrate this with move?  this could use move and be much easier to read.
-		if (toggleDirection) {
+	/*public static void manualMove(boolean toggleDirection) {//can't we integrate this with move?  this could use move and be much easier to read.
+		if (toggleDirection) {              // On second thought, lets move this to OI, much cleaner.
 			targetDirection = !targetDirection;
 		}
 		if (targetDirection) {
@@ -67,10 +68,11 @@ public class Slurper {
 		} else {
 			move(reverse, reverse);
 		}
-	}
+	}*/
 
 	/*public static void autoMove() {
-//we aren't getting half in limit....we're only getting the limits.
+//we aren't getting half in limit....we're only getting the limits.  We should really focus on manual, if that's what Ben's gonna use/
+
 		if (isBack()) {
 			targetDirection = false;
 		} else if (isForward()) {
