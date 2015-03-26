@@ -2,7 +2,7 @@ package autonomous;
 
 import subsystems.Elevator;
 
-public class Nothing extends Auto{
+public class Inactive extends Auto{
 	public void run() {
 		zero();
 		Elevator.periodicPControl();
