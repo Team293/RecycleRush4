@@ -15,9 +15,9 @@ import subsystems.Slurper;
 
 
 public class OI {
-	//gamepad or custom Launchpad
+	//Joysticks
 	private static final Joystick leftJoystick = new Joystick(Ports.leftJoystick);
-	private static final Joystick rightJoystick = new Joystick(Ports.rightJoystick); 
+	private static final Joystick rightJoystick = new Joystick(Ports.rightJoystick);
 	private static final Joystick launchpad = new Joystick(Ports.launchpad);
 
 	private static final SpikeLEDButton elevator0B = new SpikeLEDButton(launchpad, Ports.elevator0BInput, Ports.elevator0BOutput);
@@ -34,11 +34,11 @@ public class OI {
 
 	private static final SpikeButton slurperManualB = new SpikeButton(launchpad, Ports.lever);
 	private static final SpikeLEDButton toggleSlurperB = new SpikeLEDButton(launchpad, Ports.toggleSlurperBInput, Ports.toggleSlurperBOutput);
-	
+
 	private static final SpikeAxis softNob = new SpikeAxis(launchpad, Ports.nobA);
-	
+
 	private static final SpikeButton slowDriveB = new SpikeButton(leftJoystick, Ports.trigger);
-	
+
 	private static final SpikeLED lStrip = new SpikeLED(launchpad, Ports.lIndicatorStrip);
 	private static final SpikeLED rStrip = new SpikeLED(launchpad, Ports.rIndicatorStrip);
 
@@ -49,11 +49,11 @@ public class OI {
 			DriveTrain.tankDrive(-leftJoystick.getY(), -rightJoystick.getY());
 		}
 	}
-	
+
 	public static void controlSlurper() {
 		toggleSlurperB.setOutput(Slurper.isBack());
 		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());
-		
+
 		if (slurperManualB.isHeld()) {
 			Slurper.manualMove(toggleSlurperB.isBumped());
 		} else {
