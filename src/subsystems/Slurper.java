@@ -23,25 +23,37 @@ public class Slurper {
 	private static final double forward = speed;
 	private static final double stop = 0;
 	private static final double reverse = -speed;
+	private static final boolean fowardposition=false;//this will read the current position of the slurpers, and swithc their directions accordingly
+	//this leaves the need for more functions with this position as well as make it easier to read and add functions to.
 
 	private static boolean targetDirection = false;
 
 
 	private static void move(double Speed) {//why would we need control of either side.  I think one speed should be fine
 		if (lbLimit.get() && Speed == reverse) //this is fine then we can use one speed.
+            //read comments on new foward position boolean
 			Speed = stop;
+			fowardposition=false;
 		 else if (lfLimit.get() && Speed == forward) {
 			Speed = stop;
+			fowardposition=false;
 		}
 		if (rbLimit.get() && Speed == reverse) {
 			Speed = stop;
+			fowardposition=true;
 
 		} else if (rfLimit.get() && rSpeed == forward) {
 			Speed = stop;
+			fowardposition=true;
 		}
-
+        if (fowardposition==true){
 		lFinger.set(Speed);//set speed of slurpers
 		rFinger.set(Speed);//set speed on slurpers.
+        }
+        if (fowardposition==false){
+        lFinger.set(reverse);//set speed of slurpers
+		rFinger.set(reverse);//set speed on slurpers.
+        }
 	}
 
 	public static boolean isBack() {//a listener
