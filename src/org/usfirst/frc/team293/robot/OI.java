@@ -50,25 +50,12 @@ public class OI {
 		}
 	}
 
-	public static void controlSlurper() {
-		toggleSlurperB.setOutput(Slurper.isBack());
-		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());
-
-		if (slurperManualB.isHeld()) {
-			Slurper.manualMove(toggleSlurperB.isBumped());
-		} else {
-			Slurper.autoMove();
-		}
+	public static void controlSlurper() {//manual control of the slurper
+		toggleSlurperB.setOutput(Slurper.isBack());//set the slurper button LED output
+		toggleSlurperB.flash(!Slurper.isBack() && !Slurper.isForward());//only if we're off the limits.
+        Slurper.manualMove(toggleSlurperB.Move());
 	}
 
-	/*public static void controlArm() {
-		Arm.setPosition(-launchpad.getRawAxis(Ports.armA));
-		if (disableArmB.isToggled()) {
-			Arm.move(0);
-		} else {
-			Arm.periodicControl();
-		}
-	}*/
 
 	public static void monitorElevatorB(SpikeLEDButton button, double position) {
 		button.flash(Elevator.getTargetPosition() == position && !Elevator.onTarget());

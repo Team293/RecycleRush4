@@ -33,9 +33,9 @@ public class Slurper {
 		 else if (lfLimit.get() && Speed == forward) {
 			Speed = stop;
 		}
-
 		if (rbLimit.get() && Speed == reverse) {
 			Speed = stop;
+
 		} else if (rfLimit.get() && rSpeed == forward) {
 			Speed = stop;
 		}
@@ -58,17 +58,8 @@ public class Slurper {
 		return false;
 
 	}
-
-	/*public static void manualMove(boolean toggleDirection) {//can't we integrate this with move?  this could use move and be much easier to read.
-		if (toggleDirection) {              // On second thought, lets move this to OI, much cleaner.
-			targetDirection = !targetDirection;
-		}
-		if (targetDirection) {
-			move(forward, forward);
-		} else {
-			move(reverse, reverse);
-		}
-	}*/
+//can't we integrate this with move?  this could use move and be much easier to read.
+     // On second thought, lets move this to OI, much cleaner.
 
 	/*public static void autoMove() {
 //we aren't getting half in limit....we're only getting the limits.  We should really focus on manual, if that's what Ben's gonna use/
