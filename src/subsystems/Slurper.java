@@ -24,11 +24,11 @@ public class Slurper {
 	private static final double stop = 0;
 	private static final double reverse = -speed;
 
-	private static void move(double lSpeed, double rSpeed) {
-		if (lbLimit.get() && lSpeed == reverse) {
-			lSpeed = stop;
-		} else if (lfLimit.get() && lSpeed == forward) {
-			lSpeed = stop;
+	private static void move(double Speed) {//why would we need control of either side.  I think one speed should be fine
+		if (lbLimit.get() && Speed == reverse) {//this is slow on vrm, we can probably avoid this, but whatever
+			Speed = stop;
+		} else if (lfLimit.get() && Speed == forward) {
+			Speed = stop;
 		}
 
 		if (rbLimit.get() && rSpeed == reverse) {
@@ -41,21 +41,14 @@ public class Slurper {
 		rFinger.set(rSpeed);
 	}
 
-	public static boolean isBack() {
+	public static boolean isBack() {//a listener
 		if (lbLimit.get() && rbLimit.get()) {
 			return true;
 		}
 		return false;
 	}
 
-	public static boolean isHalfIn() {
-		if (lOpticalLimit.get() && rOpticalLimit.get()) {
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean isForward() {
+	public static boolean isForward() {//a listener
 		if (lfLimit.get() && rfLimit.get()) {
 			return true;
 		}
@@ -65,7 +58,7 @@ public class Slurper {
 
 	private static boolean targetDirection = false;
 
-	public static void manualMove(boolean toggleDirection) {
+	public static void manualMove(boolean toggleDirection) {//can't we integrate this with move?  this could use move and be much easier to read.
 		if (toggleDirection) {
 			targetDirection = !targetDirection;
 		}
@@ -76,7 +69,8 @@ public class Slurper {
 		}
 	}
 
-	public static void autoMove() {
+	/*public static void autoMove() {
+//we aren't getting half in limit....we're only getting the limits.
 		if (isBack()) {
 			targetDirection = false;
 		} else if (isForward()) {
@@ -103,5 +97,5 @@ public class Slurper {
 			}
 		}
 		move(lSpeed, rSpeed);
-	}
+	}*/
 }
