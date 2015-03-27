@@ -62,7 +62,20 @@ public class OI {
 		} else {
 			Slurper.autoMove();
 		}
-	}        
+	}
+	
+	private static final SpikeButton fSlurperB = new SpikeButton(leftJoystick, 11);
+	private static final SpikeButton bSlurperB = new SpikeButton(rightJoystick, 10);
+	
+	public static void controlSlurperRaw() {
+		if (fSlurperB.isHeld()) {
+			Slurper.rawMove(0.4);
+		} else if (bSlurperB.isHeld()) {
+			Slurper.rawMove(-0.4);
+		} else {
+			Slurper.rawMove(0);
+		}
+	}
 
 	public static void monitorElevatorB(SpikeLEDButton button, double position) {
 		button.flash(Elevator.getTargetPosition() == position && !Elevator.onTarget());

@@ -4,6 +4,7 @@ import org.usfirst.frc.team293.robot.Ports;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Slurper {
 	//l = left, r = right, b = back, f = front
@@ -25,6 +26,19 @@ public class Slurper {
 	private static final double reverse = -forward;
 	private static boolean targetDirection = true;
 
+	public static void rawMove(double speed) {
+		lFinger.set(-speed);
+		rFinger.set(speed);
+		SmartDashboard.putBoolean("lbLimit", lbLimit.get());
+		SmartDashboard.putBoolean("rbLimit", rbLimit.get());
+		SmartDashboard.putBoolean("lfLimit", lfLimit.get());
+		SmartDashboard.putBoolean("rfLimit", rfLimit.get());
+		SmartDashboard.putBoolean("lOpticalLimit", lOpticalLimit.get());
+		SmartDashboard.putBoolean("rOpticalLimit", rOpticalLimit.get());
+		SmartDashboard.putBoolean("lToteLimit", lToteLimit.get());
+		SmartDashboard.putBoolean("rToteLimit", rToteLimit.get());
+	}
+	
 	public static void move(double lSpeed, double rSpeed) {
 		//prevents from going through limits
 		if (lbLimit.get() && lSpeed == reverse) {
