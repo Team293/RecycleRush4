@@ -21,25 +21,33 @@ public class Slurper {
 	private static final DigitalInput lToteLimit = new DigitalInput(Ports.lToteLimit);
 	private static final DigitalInput rToteLimit = new DigitalInput(Ports.rToteLimit);
 
-	private static final double forward = 0.15;
+	private static final double forward = 0.6;
 	private static final double stop = 0;
 	private static final double reverse = -forward;
 	private static boolean targetDirection = true;
 
 	public static void rawMove(double speed) {
-		lFinger.set(-speed);
-		rFinger.set(speed);
+		lFinger.set(speed);
+		rFinger.set(-speed);
 		SmartDashboard.putBoolean("lbLimit", lbLimit.get());
 		SmartDashboard.putBoolean("rbLimit", rbLimit.get());
 		SmartDashboard.putBoolean("lfLimit", lfLimit.get());
 		SmartDashboard.putBoolean("rfLimit", rfLimit.get());
 		SmartDashboard.putBoolean("lOpticalLimit", lOpticalLimit.get());
-		SmartDashboard.putBoolean("rOpticalLimit", rOpticalLimit.get());
+		SmartDashboard.putBoolean("rOpticalLimit", !rOpticalLimit.get());
 		SmartDashboard.putBoolean("lToteLimit", lToteLimit.get());
 		SmartDashboard.putBoolean("rToteLimit", rToteLimit.get());
 	}
 	
 	public static void move(double lSpeed, double rSpeed) {
+		SmartDashboard.putBoolean("lbLimit", lbLimit.get());
+		SmartDashboard.putBoolean("rbLimit", rbLimit.get());
+		SmartDashboard.putBoolean("lfLimit", lfLimit.get());
+		SmartDashboard.putBoolean("rfLimit", rfLimit.get());
+		SmartDashboard.putBoolean("lOpticalLimit", lOpticalLimit.get());
+		SmartDashboard.putBoolean("rOpticalLimit", !rOpticalLimit.get());
+		SmartDashboard.putBoolean("lToteLimit", lToteLimit.get());
+		SmartDashboard.putBoolean("rToteLimit", rToteLimit.get());
 		//prevents from going through limits
 		if (lbLimit.get() && lSpeed == reverse) {
 			lSpeed = stop;
@@ -53,8 +61,8 @@ public class Slurper {
 			rSpeed = stop;
 		}
 
-		lFinger.set(-lSpeed);
-		rFinger.set(rSpeed);
+		lFinger.set(lSpeed);
+		rFinger.set(-rSpeed);
 	}
 
 	public static boolean isBack() {
@@ -65,7 +73,7 @@ public class Slurper {
 	}
 	
 	public static boolean isHalfIn() {
-		if (lOpticalLimit.get() && rOpticalLimit.get()) {
+		if (lOpticalLimit.get()) {
 			return true;
 		}
 		return false;
@@ -114,7 +122,7 @@ public class Slurper {
 			//if a tote is partway in, move backwards
 			if (isHalfIn() && !lbLimit.get()) {
 				lSpeed = reverse;
-			} else if (!lbLimit.get() && !rbLimit.get()) {
+			} else if (!lOpticalLimit.get()) {
 				//if there is no tote, reset to forwards
 				lSpeed = forward;
 			}

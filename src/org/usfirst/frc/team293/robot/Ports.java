@@ -48,17 +48,17 @@ public class Ports {
 	elevatorEncoder1 = 4,
 	elevatorEncoder2 = 5,
 	elevatorTopLimit = 8,
-	elevatorBottomLimit = 9,
+	elevatorBottomLimit = 7,
 
-	lbLimit = 11,
+	lbLimit = 12,
 	rbLimit = 10,
-	lfLimit = 1,
+	lfLimit = 2,
 	rfLimit = 0,
-	lOpticalLimit = 2,
-	rOpticalLimit = 3,
+	lOpticalLimit = 3,
+	rOpticalLimit = 1,
 	
 	lToteLimit = 6,
-	rToteLimit = 7,
+	rToteLimit = 9,
 
 	//analog sensors
 	armPot = 1,
@@ -70,7 +70,7 @@ public class Ports {
 	elevator = 2,
 	arm = 3,
 	lBelt=4,
-	rBelt=5;
+	rBelt=3;
 
 
 }

@@ -65,15 +65,15 @@ public class OI {
 	}
 	
 	private static final SpikeButton fSlurperB = new SpikeButton(leftJoystick, 11);
-	private static final SpikeButton bSlurperB = new SpikeButton(rightJoystick, 10);
+	private static final SpikeButton bSlurperB = new SpikeButton(leftJoystick, 10);
 	
 	public static void controlSlurperRaw() {
 		if (fSlurperB.isHeld()) {
-			Slurper.rawMove(0.4);
+			Slurper.move(0.6, 0.6);
 		} else if (bSlurperB.isHeld()) {
-			Slurper.rawMove(-0.4);
+			Slurper.move(-0.6, -0.6);
 		} else {
-			Slurper.rawMove(0);
+			Slurper.move(0, 0);
 		}
 	}
 
